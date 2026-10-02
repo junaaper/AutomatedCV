@@ -1,7 +1,10 @@
 from functools import lru_cache
 from typing import Literal
 
+from pydantic import model_validator
 from pydantic_settings import BaseSettings, SettingsConfigDict
+
+_DEV_JWT_SECRET = "dev-secret-change-me"
 
 
 class Settings(BaseSettings):
@@ -11,7 +14,7 @@ class Settings(BaseSettings):
     database_url: str = "postgresql+psycopg://postgres:postgres@localhost:5432/automatedcv"
     frontend_origin: str = "http://localhost:5173"
 
-    jwt_secret: str = "dev-secret-change-me"
+    jwt_secret: str = _DEV_JWT_SECRET
     access_token_minutes: int = 15
     refresh_token_days: int = 14
 
@@ -25,6 +28,22 @@ class Settings(BaseSettings):
     daily_llm_runs_per_user: int = 20
 
     sentry_dsn: str = ""
+
+    @model_validator(mode="after")
+    def _require_real_secret_in_prod(self) -> "Settings":
+        if self.environment == "prod" and self.jwt_secret == _DEV_JWT_SECRET:
+            raise ValueError("JWT_SECRET must be set in production")
+        return self
+
+    # In prod the frontend (Cloudflare Pages) and API (Render) are different sites, so the
+    # refresh cookie must be SameSite=None + Secure. Locally both are on localhost (same site).
+    @property
+    def cookie_secure(self) -> bool:
+        return self.environment == "prod"
+
+    @property
+    def cookie_samesite(self) -> Literal["lax", "none"]:
+        return "none" if self.environment == "prod" else "lax"
 
 
 @lru_cache
