@@ -12,7 +12,9 @@ from app.applications.router import router as applications_router
 from app.auth.router import router as auth_router
 from app.config import get_settings
 from app.cv.router import router as cv_router
-from app.db import SessionDep
+from app.db import SessionDep, SessionLocal
+from app.demo.router import router as demo_router
+from app.demo.service import purge_expired_demo_users
 
 log = logging.getLogger(__name__)
 
@@ -20,11 +22,13 @@ log = logging.getLogger(__name__)
 @asynccontextmanager
 async def lifespan(app: FastAPI) -> AsyncIterator[None]:
     try:
-        await get_graph()  # open the checkpointer pool and set up its tables at boot
+        graph = await get_graph()  # open the checkpointer pool and set up its tables at boot
+        async with SessionLocal() as session:
+            await purge_expired_demo_users(session, graph.checkpointer)
     except Exception:
         # Don't block startup (healthz must answer during cold starts); the graph is
         # created lazily on first use instead.
-        log.exception("Agent graph warm-up failed")
+        log.exception("Startup warm-up failed")
     yield
     await close_graph()
 
@@ -44,6 +48,7 @@ def create_app() -> FastAPI:
     app.include_router(cv_router)
     app.include_router(agent_router)
     app.include_router(applications_router)
+    app.include_router(demo_router)
 
     @app.get("/healthz")
     async def healthz() -> dict[str, str]:

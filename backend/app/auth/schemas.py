@@ -26,6 +26,10 @@ class LoginRequest(_EmailModel):
     password: str = Field(min_length=1, max_length=128)
 
 
+class DemoRequest(BaseModel):
+    turnstile_token: str = Field(min_length=1, max_length=2048)
+
+
 class UserOut(BaseModel):
     model_config = ConfigDict(from_attributes=True)
 

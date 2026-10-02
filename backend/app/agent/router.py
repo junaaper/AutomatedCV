@@ -26,9 +26,11 @@ from app.agent.runtime import get_graph
 from app.agent.state import AgentContext, AgentError
 from app.applications.models import AgentRun, RunStatus
 from app.auth.deps import CurrentUser
+from app.auth.models import User
 from app.config import get_settings
 from app.cv.models import CvChunk
 from app.db import SessionDep, SessionLocal
+from app.demo.service import embedder_for, llm_for
 from app.providers.embeddings import Embedder, get_embedder
 from app.providers.llm import get_llm
 
@@ -83,10 +85,10 @@ class RunDetail(RunSummary):
 # --- helpers ---
 
 
-def _context(llm: BaseChatModel, embedder: Embedder) -> AgentContext:
+def _context(user: User, posting: str, llm: BaseChatModel, embedder: Embedder) -> AgentContext:
     return AgentContext(
-        llm=llm,
-        embedder=embedder,
+        llm=llm_for(user, posting, llm),
+        embedder=embedder_for(user, embedder),
         session_factory=SessionLocal,
         max_revisions=get_settings().max_revisions,
     )
@@ -254,7 +256,8 @@ async def start_run(
     session.add(run)
     await session.commit()
     graph_input = {"user_id": str(user.id), "run_id": str(run.id), "posting": body.posting}
-    return _stream({**graph_input, "revisions": 0}, run.id, _context(llm, embedder))
+    ctx = _context(user, body.posting, llm, embedder)
+    return _stream({**graph_input, "revisions": 0}, run.id, ctx)
 
 
 @router.post("/{run_id}/resume", response_class=StreamingResponse)
@@ -269,14 +272,12 @@ async def resume_run(
     """Answer the review pause: approve, edit (with cover_letter), revise (with
     feedback), or reject."""
     await _owned_run(session, run_id, user.id)
-    if body.action == "revise":
-        snap = await (await get_graph()).aget_state(_config(run_id))
-        if snap.values.get("revisions", 0) >= get_settings().max_revisions:
-            raise HTTPException(status.HTTP_409_CONFLICT, "Revision limit reached")
+    values = (await (await get_graph()).aget_state(_config(run_id))).values
+    if body.action == "revise" and values.get("revisions", 0) >= get_settings().max_revisions:
+        raise HTTPException(status.HTTP_409_CONFLICT, "Revision limit reached")
     await _claim(session, run_id, user.id, [RunStatus.awaiting_review])
-    return _stream(
-        Command(resume=body.model_dump(exclude_none=True)), run_id, _context(llm, embedder)
-    )
+    ctx = _context(user, values.get("posting", ""), llm, embedder)
+    return _stream(Command(resume=body.model_dump(exclude_none=True)), run_id, ctx)
 
 
 @router.post("/{run_id}/retry", response_class=StreamingResponse)
@@ -289,7 +290,8 @@ async def retry_run(
     if not _is_retryable(run):
         raise HTTPException(status.HTTP_409_CONFLICT, "Run is not retryable")
     await _claim(session, run_id, user.id, [RunStatus.failed, RunStatus.running])
-    return _stream(None, run_id, _context(llm, embedder))
+    values = (await (await get_graph()).aget_state(_config(run_id))).values
+    return _stream(None, run_id, _context(user, values.get("posting", ""), llm, embedder))
 
 
 @router.get("")

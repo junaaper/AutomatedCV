@@ -1,3 +1,4 @@
+import logging
 from typing import Annotated
 
 from fastapi import APIRouter, Cookie, Depends, HTTPException, Request, Response, status
@@ -5,9 +6,10 @@ from fastapi.responses import JSONResponse
 from sqlalchemy import select
 from sqlalchemy.exc import IntegrityError
 
+from app.agent.runtime import get_graph
 from app.auth.deps import CurrentUser
 from app.auth.models import User
-from app.auth.schemas import LoginRequest, SignupRequest, TokenResponse, UserOut
+from app.auth.schemas import DemoRequest, LoginRequest, SignupRequest, TokenResponse, UserOut
 from app.auth.security import create_access_token, hash_password, verify_password
 from app.auth.service import (
     InvalidRefreshToken,
@@ -18,7 +20,9 @@ from app.auth.service import (
 from app.auth.turnstile import TurnstileVerifier, get_turnstile_verifier
 from app.config import get_settings
 from app.db import SessionDep
+from app.demo.service import create_demo_user, purge_expired_demo_users
 
+log = logging.getLogger(__name__)
 router = APIRouter(prefix="/auth", tags=["auth"])
 
 REFRESH_COOKIE = "refresh_token"
@@ -83,6 +87,25 @@ async def signup(
     except IntegrityError:
         await session.rollback()
         raise HTTPException(status.HTTP_409_CONFLICT, "An account with this email exists") from None
+    return await _login_response(session, response, user)
+
+
+@router.post("/demo", status_code=status.HTTP_201_CREATED)
+async def demo_login(
+    body: DemoRequest,
+    request: Request,
+    response: Response,
+    session: SessionDep,
+    verify: Verifier,
+) -> TokenResponse:
+    """One-click throwaway account with a sample CV and tracker, deleted after 24h."""
+    await _require_captcha(verify, body.turnstile_token, request)
+    try:
+        await purge_expired_demo_users(session, (await get_graph()).checkpointer)
+    except Exception:  # cleanup is opportunistic; never block a demo sign-in on it
+        log.exception("Demo purge failed")
+        await session.rollback()
+    user = await create_demo_user(session)
     return await _login_response(session, response, user)
 
 

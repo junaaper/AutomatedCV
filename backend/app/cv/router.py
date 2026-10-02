@@ -12,6 +12,7 @@ from app.cv.extract import MAX_PDF_BYTES, CvExtractionError, extract_pdf_text, v
 from app.cv.models import CvDocument
 from app.cv.service import chunk_count, ingest_cv, search_cv
 from app.db import SessionDep
+from app.demo.service import embedder_for
 from app.providers.embeddings import Embedder, get_embedder
 
 log = logging.getLogger(__name__)
@@ -71,7 +72,9 @@ async def upload_cv(
         raise HTTPException(status.HTTP_422_UNPROCESSABLE_CONTENT, str(exc)) from None
 
     try:
-        doc, n_chunks = await ingest_cv(session, user.id, content, filename, embedder)
+        doc, n_chunks = await ingest_cv(
+            session, user.id, content, filename, embedder_for(user, embedder)
+        )
     except Exception as exc:  # any provider/network failure
         raise _embedding_unavailable(exc) from None
     return CvOut(
@@ -109,7 +112,9 @@ async def search(
 ) -> list[EvidenceOut]:
     """Debug/insight endpoint: which parts of my CV match this phrase?"""
     try:
-        [hits] = await search_cv(session, user.id, [body.query], embedder, k=body.k)
+        [hits] = await search_cv(
+            session, user.id, [body.query], embedder_for(user, embedder), k=body.k
+        )
     except Exception as exc:
         raise _embedding_unavailable(exc) from None
     return [
