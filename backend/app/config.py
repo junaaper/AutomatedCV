@@ -22,7 +22,6 @@ class Settings(BaseSettings):
     llm_model: str = "llama-3.3-70b-versatile"
     embed_provider: Literal["gemini", "fake"] = "gemini"
     embed_model: str = "gemini-embedding-001"
-    embed_dim: int = 768
 
     turnstile_secret_key: str = "1x0000000000000000000000000000000AA"
     daily_llm_runs_per_user: int = 20
