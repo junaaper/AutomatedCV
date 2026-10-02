@@ -109,6 +109,14 @@ export type ResumeAction =
   | { action: 'revise'; feedback: string }
   | { action: 'reject' }
 
+export interface SamplePosting {
+  id: string
+  title: string
+  company: string
+  blurb: string
+  posting: string
+}
+
 export type ApplicationStatus = 'saved' | 'applied' | 'interviewing' | 'offer' | 'rejected'
 
 export interface ApplicationSummary {

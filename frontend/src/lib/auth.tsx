@@ -9,6 +9,7 @@ interface AuthState {
   ready: boolean
   login: (email: string, password: string, turnstileToken: string) => Promise<void>
   signup: (email: string, password: string, turnstileToken: string) => Promise<void>
+  demo: (turnstileToken: string) => Promise<void>
   logout: () => Promise<void>
 }
 
@@ -55,6 +56,12 @@ export function AuthProvider({ children }: { children: ReactNode }) {
     [accept],
   )
 
+  const demo = useCallback(
+    async (turnstile_token: string) =>
+      accept(await api<TokenResponse>('/auth/demo', { method: 'POST', ...json({ turnstile_token }) })),
+    [accept],
+  )
+
   const logout = useCallback(async () => {
     await api('/auth/logout', { method: 'POST' }).catch(() => undefined)
     setAccessToken(null)
@@ -63,8 +70,8 @@ export function AuthProvider({ children }: { children: ReactNode }) {
   }, [queryClient])
 
   const value = useMemo(
-    () => ({ user, ready, login, signup, logout }),
-    [user, ready, login, signup, logout],
+    () => ({ user, ready, login, signup, demo, logout }),
+    [user, ready, login, signup, demo, logout],
   )
   return <AuthContext value={value}>{children}</AuthContext>
 }

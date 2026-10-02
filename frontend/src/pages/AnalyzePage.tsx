@@ -1,4 +1,4 @@
-import { useQueryClient } from '@tanstack/react-query'
+import { useQuery, useQueryClient } from '@tanstack/react-query'
 import {
   ArrowRight,
   Building2,
@@ -24,10 +24,10 @@ import { RequirementList, VerdictSummary } from '../components/RequirementList'
 import { ScoreRing } from '../components/ScoreRing'
 import { Badge, Button, Card, EmptyState, PageHeader, Skeleton, fadeUp } from '../components/ui'
 import { api, streamEvents } from '../lib/api'
+import { useAuth } from '../lib/auth'
 import { cn, wordCount } from '../lib/format'
 import { useCv } from '../lib/queries'
-import { SAMPLE_POSTING } from '../lib/samplePosting'
-import type { AgentNode, ResumeAction, Review, RunDetail, RunEvent } from '../lib/types'
+import type { AgentNode, ResumeAction, Review, RunDetail, RunEvent, SamplePosting } from '../lib/types'
 
 type Phase = 'loading' | 'compose' | 'running' | 'review' | 'done' | 'rejected' | 'error'
 
@@ -59,28 +59,79 @@ function describeStep(data: Record<string, unknown>): string | undefined {
 
 // ---------------------------------------------------------------------------
 
+const normalise = (s: string) => s.split(/\s+/).join(' ').trim()
+
+function SamplePicker({ selected, onPick }: { selected: string; onPick: (posting: string) => void }) {
+  const { user } = useAuth()
+  const { data: samples } = useQuery({
+    queryKey: ['samples'],
+    queryFn: () => api<SamplePosting[]>('/demo/postings'),
+    staleTime: Infinity,
+  })
+  if (!samples?.length) return null
+  return (
+    <div className="mb-5">
+      <div className="mb-3 flex items-center gap-2 text-xs text-white/45">
+        <Sparkles className="size-3.5 text-violet-300" />
+        {user?.is_demo
+          ? 'Pick a sample posting. These replay recorded agent runs, instantly and offline.'
+          : 'No posting handy? Try a sample.'}
+      </div>
+      <div className="grid gap-3 sm:grid-cols-3">
+        {samples.map((s, i) => {
+          const active = normalise(selected) === normalise(s.posting)
+          return (
+            <motion.button
+              key={s.id}
+              initial={{ opacity: 0, y: 10 }}
+              animate={{ opacity: 1, y: 0 }}
+              transition={{ delay: 0.05 * i }}
+              onClick={() => onPick(s.posting)}
+              className={cn(
+                'group rounded-2xl p-4 text-left ring-1 transition-all duration-300',
+                active
+                  ? 'bg-violet-500/[0.12] shadow-[0_10px_40px_-15px_rgb(139_92_246/0.7)] ring-violet-400/50'
+                  : 'bg-white/[0.03] ring-white/[0.08] hover:-translate-y-0.5 hover:bg-white/[0.05] hover:ring-white/20',
+              )}
+            >
+              <p className="flex items-center gap-1.5 text-xs text-white/45">
+                <Building2 className="size-3" /> {s.company}
+              </p>
+              <p className="mt-1 text-sm font-medium text-white">{s.title}</p>
+              <p className="mt-2 text-xs text-white/40">{s.blurb}</p>
+            </motion.button>
+          )
+        })}
+      </div>
+    </div>
+  )
+}
+
 function Composer({ onStart, busy }: { onStart: (posting: string) => void; busy: boolean }) {
   const [posting, setPosting] = useState('')
   const ok = posting.trim().length >= 100
   return (
     <motion.div {...fadeUp}>
+      <SamplePicker selected={posting} onPick={setPosting} />
       <Card glow className="overflow-hidden">
         <div className="flex items-center justify-between border-b border-white/[0.06] px-5 py-3">
           <div className="flex items-center gap-2 text-sm text-white/60">
             <FileText className="size-4 text-violet-300" /> Job posting
           </div>
-          <button
-            onClick={() => setPosting(SAMPLE_POSTING)}
-            className="flex items-center gap-1.5 rounded-lg px-2 py-1 text-xs text-violet-300 transition hover:bg-violet-500/10"
-          >
-            <Sparkles className="size-3.5" /> Use a sample posting
-          </button>
+          {posting && (
+            <button
+              onClick={() => setPosting('')}
+              className="rounded-lg px-2 py-1 text-xs text-white/40 transition hover:bg-white/5 hover:text-white/70"
+            >
+              Clear
+            </button>
+          )}
         </div>
         <textarea
           value={posting}
           onChange={(e) => setPosting(e.target.value)}
           placeholder="Paste the full job description here: title, company, responsibilities, requirements…"
-          className="block h-[340px] w-full resize-none bg-transparent px-5 py-4 text-[14.5px] leading-relaxed text-white/85 outline-none placeholder:text-white/25"
+          className="block h-[300px] w-full resize-none bg-transparent px-5 py-4 text-[14.5px] leading-relaxed text-white/85 outline-none placeholder:text-white/25"
         />
         <div className="flex flex-wrap items-center justify-between gap-3 border-t border-white/[0.06] bg-black/20 px-5 py-3">
           <span className={cn('font-mono text-xs', ok ? 'text-white/35' : 'text-white/25')}>
@@ -116,7 +167,8 @@ function JobHeader({ review }: { review: Review }) {
   )
 }
 
-const REVISE_CHIPS = ['Make it shorter', 'More confident tone', 'Lead with my backend work', 'Less formal']
+// Must match REVISION_SUGGESTIONS in backend/app/demo/content.py (they have recorded demo replies).
+const REVISE_CHIPS = ['Make it shorter', 'More confident tone', 'Less formal']
 
 function ReviewWorkspace({
   review,

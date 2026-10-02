@@ -1,4 +1,4 @@
-import { FileText, LayoutDashboard, LogOut, SquareKanban, WandSparkles } from 'lucide-react'
+import { FileText, LayoutDashboard, LogOut, Sparkles, SquareKanban, WandSparkles } from 'lucide-react'
 import { motion } from 'motion/react'
 import { NavLink, Outlet, useLocation } from 'react-router'
 import { useAuth } from '../lib/auth'
@@ -87,6 +87,18 @@ export function AppShell() {
           <LogOut className="size-4" />
         </button>
       </header>
+
+      {user?.is_demo && (
+        <div className="border-b border-violet-400/15 bg-gradient-to-r from-violet-500/15 via-cyan-500/10 to-transparent px-4 py-2.5 text-center text-xs text-white/70 sm:px-8">
+          <Sparkles className="mr-1.5 inline size-3.5 -translate-y-px text-violet-300" />
+          <span className="font-medium text-white">Demo account.</span> Sample postings replay
+          recorded AI runs, so they're instant and work even if the model API is down. Everything
+          resets after 24 hours.{' '}
+          <button onClick={logout} className="font-medium text-violet-300 underline-offset-2 hover:underline">
+            Create your own account
+          </button>
+        </div>
+      )}
 
       <main className="mx-auto w-full max-w-6xl px-4 py-8 sm:px-8 lg:py-12">
         <Outlet />

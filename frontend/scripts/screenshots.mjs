@@ -1,6 +1,7 @@
 // Walks through the whole app with a fresh account and saves screenshots.
 //
-//   node scripts/screenshots.mjs [outDir]
+//   node scripts/screenshots.mjs [outDir]          # fresh signup
+//   TOUR=demo node scripts/screenshots.mjs [outDir] # one-click demo account
 //
 // Needs the backend on :8000 and the frontend on :5173. Used for visual QA and the README.
 import { chromium } from '@playwright/test'
@@ -9,6 +10,7 @@ import { resolve } from 'node:path'
 
 const BASE = process.env.APP_URL ?? 'http://localhost:5173'
 const OUT = resolve(process.argv[2] ?? '../docs/screenshots')
+const DEMO = process.env.TOUR === 'demo'
 mkdirSync(OUT, { recursive: true })
 
 const CV = `Ada Lovelace
@@ -48,28 +50,43 @@ await page.getByRole('heading', { name: /Start applying smarter/ }).waitFor()
 await page.waitForTimeout(2200) // let hero animations settle
 await shot(page, '01-login')
 
-// 2. Sign up → overview (onboarding)
-await page.getByPlaceholder('ada@example.com').fill(`tour-${Date.now()}@example.com`)
-await page.getByPlaceholder('••••••••').fill('correct horse battery')
 await page.waitForTimeout(1500) // Turnstile test key auto-passes
-await page.getByRole('button', { name: 'Create account' }).last().click()
-await page.getByText('Get set up').waitFor()
-await page.waitForTimeout(1500)
-await shot(page, '02-overview-onboarding')
+if (DEMO) {
+  // 2. One-click demo account (seeded CV + tracker, recorded agent runs)
+  await page.getByRole('button', { name: /Explore the demo/ }).click()
+  await page.getByText('Recent agent runs').waitFor()
+  await page.waitForTimeout(1800)
+  await shot(page, '02-overview')
 
-// 3. CV: paste + probe
-await page.getByRole('link', { name: 'My CV' }).first().click()
-await page.getByRole('button', { name: 'Paste' }).click()
-await page.getByPlaceholder(/Paste the full text of your CV/).fill(CV)
-await page.getByRole('button', { name: 'Index CV' }).click()
-await page.getByText('Probe your CV').waitFor({ timeout: 60_000 })
-await page.getByRole('button', { name: 'Python backend' }).click()
-await page.waitForTimeout(2500)
-await shot(page, '03-cv')
+  // 3. CV probe
+  await page.getByRole('link', { name: 'My CV' }).first().click()
+  await page.getByText('Probe your CV').waitFor()
+  await page.getByRole('button', { name: 'Python backend' }).click()
+  await page.waitForTimeout(2500)
+  await shot(page, '03-cv')
+} else {
+  // 2. Sign up → overview (onboarding)
+  await page.getByPlaceholder('ada@example.com').fill(`tour-${Date.now()}@example.com`)
+  await page.getByPlaceholder('••••••••').fill('correct horse battery')
+  await page.getByRole('button', { name: 'Create account' }).last().click()
+  await page.getByText('Get set up').waitFor()
+  await page.waitForTimeout(1500)
+  await shot(page, '02-overview-onboarding')
 
-// 4. Analyze: compose → running → review
+  // 3. CV: paste + probe
+  await page.getByRole('link', { name: 'My CV' }).first().click()
+  await page.getByRole('button', { name: 'Paste' }).click()
+  await page.getByPlaceholder(/Paste the full text of your CV/).fill(CV)
+  await page.getByRole('button', { name: 'Index CV' }).click()
+  await page.getByText('Probe your CV').waitFor({ timeout: 60_000 })
+  await page.getByRole('button', { name: 'Python backend' }).click()
+  await page.waitForTimeout(2500)
+  await shot(page, '03-cv')
+}
+
+// 4. Analyze: pick a sample → running → review
 await page.getByRole('link', { name: 'Analyze a job' }).first().click()
-await page.getByRole('button', { name: /Use a sample posting/ }).click()
+await page.getByRole('button', { name: /Northwind Pay/ }).click()
 await page.waitForTimeout(400)
 await shot(page, '04-compose')
 await page.getByRole('button', { name: /Analyze fit/ }).click()

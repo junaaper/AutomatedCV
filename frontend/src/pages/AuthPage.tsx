@@ -87,13 +87,27 @@ function HeroPreview() {
 }
 
 export function AuthPage() {
-  const { login, signup } = useAuth()
+  const { login, signup, demo } = useAuth()
+  const [demoBusy, setDemoBusy] = useState(false)
   const [mode, setMode] = useState<Mode>('signup')
   const [email, setEmail] = useState('')
   const [password, setPassword] = useState('')
   const [captcha, setCaptcha] = useState<string | null>(null)
   const [error, setError] = useState<string | null>(null)
   const [busy, setBusy] = useState(false)
+
+  async function tryDemo() {
+    if (!captcha) return setError('Please wait for the captcha check to finish.')
+    setDemoBusy(true)
+    setError(null)
+    try {
+      await demo(captcha)
+    } catch (err) {
+      setError(err instanceof Error ? err.message : 'Could not start the demo')
+    } finally {
+      setDemoBusy(false)
+    }
+  }
 
   async function submit(e: FormEvent) {
     e.preventDefault()
@@ -263,6 +277,25 @@ export function AuthPage() {
                 {!busy && <ArrowRight className="size-4" />}
               </Button>
             </form>
+
+            <div className="my-6 flex items-center gap-3 text-[11px] uppercase tracking-[0.2em] text-white/25">
+              <span className="h-px flex-1 bg-white/10" /> or <span className="h-px flex-1 bg-white/10" />
+            </div>
+            <Button
+              type="button"
+              variant="secondary"
+              size="lg"
+              className="w-full"
+              loading={demoBusy}
+              disabled={busy}
+              onClick={tryDemo}
+              icon={<Sparkles className="size-4 text-violet-300" />}
+            >
+              Explore the demo, no signup
+            </Button>
+            <p className="mt-2 text-center text-xs text-white/35">
+              A sample CV and tracker, plus recorded agent runs that work even offline.
+            </p>
 
             <p className="mt-6 flex items-center justify-center gap-2 text-xs text-white/35">
               <Check className="size-3.5 text-emerald-400/70" />
