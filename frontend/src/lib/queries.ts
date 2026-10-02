@@ -23,6 +23,13 @@ export function useApplications() {
   })
 }
 
+export function useUsage() {
+  return useQuery({
+    queryKey: ['usage'],
+    queryFn: () => api<{ used: number; limit: number; resets_at: string }>('/usage'),
+  })
+}
+
 export function useRuns() {
   return useQuery({ queryKey: ['runs'], queryFn: () => api<RunSummary[]>('/runs') })
 }

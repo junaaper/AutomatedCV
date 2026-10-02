@@ -483,6 +483,7 @@ export function AnalyzePage() {
       } finally {
         setBusy(false)
         qc.invalidateQueries({ queryKey: ['runs'] })
+        qc.invalidateQueries({ queryKey: ['usage'] })
       }
     },
     [handleEvent, qc],

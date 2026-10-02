@@ -3,6 +3,7 @@ import { motion } from 'motion/react'
 import { NavLink, Outlet, useLocation } from 'react-router'
 import { useAuth } from '../lib/auth'
 import { cn } from '../lib/format'
+import { useUsage } from '../lib/queries'
 import { Logo, LogoMark } from './Logo'
 
 const NAV = [
@@ -39,6 +40,32 @@ function NavItem({ item, compact }: { item: (typeof NAV)[number]; compact?: bool
   )
 }
 
+/** Today's live AI runs vs the daily quota (replayed demo runs don't count). */
+function UsageMeter() {
+  const { data } = useUsage()
+  if (!data) return null
+  const pct = data.limit ? Math.min(100, (data.used / data.limit) * 100) : 100
+  const low = data.limit - data.used <= Math.max(1, data.limit * 0.2)
+  return (
+    <div className="px-2" title="Resets at midnight UTC">
+      <div className="mb-1.5 flex justify-between text-[11px]">
+        <span className="text-white/45">AI runs today</span>
+        <span className={cn('font-mono', low ? 'text-amber-300' : 'text-white/55')}>
+          {data.used}/{data.limit}
+        </span>
+      </div>
+      <div className="h-1 overflow-hidden rounded-full bg-white/[0.06]">
+        <motion.div
+          className={cn('h-full rounded-full', low ? 'bg-amber-400' : 'bg-gradient-to-r from-violet-500 to-cyan-400')}
+          initial={{ width: 0 }}
+          animate={{ width: `${pct}%` }}
+          transition={{ duration: 0.8 }}
+        />
+      </div>
+    </div>
+  )
+}
+
 export function AppShell() {
   const { user, logout } = useAuth()
   return (
@@ -53,7 +80,8 @@ export function AppShell() {
             <NavItem key={item.to} item={item} />
           ))}
         </nav>
-        <div className="mt-auto">
+        <div className="mt-auto space-y-3">
+          <UsageMeter />
           <div className="glass rounded-2xl p-3">
             <div className="flex items-center gap-3">
               <div className="grid size-9 shrink-0 place-items-center rounded-full bg-gradient-to-br from-violet-500 to-cyan-400 text-sm font-semibold text-white">
