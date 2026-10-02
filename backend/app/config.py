@@ -4,7 +4,7 @@ from typing import Literal
 from pydantic import model_validator
 from pydantic_settings import BaseSettings, SettingsConfigDict
 
-_DEV_JWT_SECRET = "dev-secret-change-me"
+_DEV_JWT_SECRET = "dev-only-secret-change-me-in-production-0123456789"
 
 
 class Settings(BaseSettings):
@@ -31,8 +31,10 @@ class Settings(BaseSettings):
 
     @model_validator(mode="after")
     def _require_real_secret_in_prod(self) -> "Settings":
-        if self.environment == "prod" and self.jwt_secret == _DEV_JWT_SECRET:
-            raise ValueError("JWT_SECRET must be set in production")
+        if self.environment == "prod" and (
+            self.jwt_secret == _DEV_JWT_SECRET or len(self.jwt_secret) < 32
+        ):
+            raise ValueError("JWT_SECRET must be set to 32+ random bytes in production")
         return self
 
     # In prod the frontend (Cloudflare Pages) and API (Render) are different sites, so the
