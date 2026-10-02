@@ -1,16 +1,37 @@
+import logging
+from collections.abc import AsyncIterator
+from contextlib import asynccontextmanager
+
 from fastapi import FastAPI
 from fastapi.middleware.cors import CORSMiddleware
 from sqlalchemy import text
 
+from app.agent.router import router as agent_router
+from app.agent.runtime import close_graph, get_graph
+from app.applications.router import router as applications_router
 from app.auth.router import router as auth_router
 from app.config import get_settings
 from app.cv.router import router as cv_router
 from app.db import SessionDep
 
+log = logging.getLogger(__name__)
+
+
+@asynccontextmanager
+async def lifespan(app: FastAPI) -> AsyncIterator[None]:
+    try:
+        await get_graph()  # open the checkpointer pool and set up its tables at boot
+    except Exception:
+        # Don't block startup (healthz must answer during cold starts); the graph is
+        # created lazily on first use instead.
+        log.exception("Agent graph warm-up failed")
+    yield
+    await close_graph()
+
 
 def create_app() -> FastAPI:
     settings = get_settings()
-    app = FastAPI(title="AutomatedCV API", version="0.1.0")
+    app = FastAPI(title="AutomatedCV API", version="0.1.0", lifespan=lifespan)
     app.add_middleware(
         CORSMiddleware,
         allow_origins=[settings.frontend_origin],
@@ -21,6 +42,8 @@ def create_app() -> FastAPI:
 
     app.include_router(auth_router)
     app.include_router(cv_router)
+    app.include_router(agent_router)
+    app.include_router(applications_router)
 
     @app.get("/healthz")
     async def healthz() -> dict[str, str]:
