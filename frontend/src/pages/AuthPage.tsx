@@ -1,6 +1,6 @@
 import { ArrowRight, Check, FileSearch, Quote, ShieldCheck, Sparkles, UserCheck } from 'lucide-react'
 import { AnimatePresence, motion } from 'motion/react'
-import { useState } from 'react'
+import { useRef, useState } from 'react'
 import type { FormEvent } from 'react'
 import { Logo } from '../components/Logo'
 import { ScoreRing } from '../components/ScoreRing'
@@ -92,35 +92,45 @@ export function AuthPage() {
   const [mode, setMode] = useState<Mode>('signup')
   const [email, setEmail] = useState('')
   const [password, setPassword] = useState('')
-  const [captcha, setCaptcha] = useState<string | null>(null)
   const [error, setError] = useState<string | null>(null)
   const [busy, setBusy] = useState(false)
+  // Turnstile runs invisibly; keep its token in a ref so a click can wait for it.
+  const captcha = useRef<string | null>(null)
+  const [captchaKey, setCaptchaKey] = useState(0)
 
-  async function tryDemo() {
-    if (!captcha) return setError('Please wait for the captcha check to finish.')
-    setDemoBusy(true)
+  /** Resolves the current token, waiting briefly if the challenge hasn't finished. */
+  async function captchaToken(): Promise<string> {
+    for (let waited = 0; !captcha.current && waited < 15_000; waited += 100) {
+      await new Promise((r) => setTimeout(r, 100))
+    }
+    if (!captcha.current) throw new Error('The captcha check did not complete. Please reload and try again.')
+    return captcha.current
+  }
+
+  /** Tokens are single-use: after any attempt, remount the widget for a fresh one. */
+  function renewCaptcha() {
+    captcha.current = null
+    setCaptchaKey((k) => k + 1)
+  }
+
+  async function attempt(run: (token: string) => Promise<void>, setPending: (b: boolean) => void) {
+    setPending(true)
     setError(null)
     try {
-      await demo(captcha)
+      await run(await captchaToken())
     } catch (err) {
-      setError(err instanceof Error ? err.message : 'Could not start the demo')
+      setError(err instanceof Error ? err.message : 'Something went wrong')
+      renewCaptcha()
     } finally {
-      setDemoBusy(false)
+      setPending(false)
     }
   }
 
-  async function submit(e: FormEvent) {
+  const tryDemo = () => attempt((token) => demo(token), setDemoBusy)
+
+  function submit(e: FormEvent) {
     e.preventDefault()
-    if (!captcha) return setError('Please complete the captcha check.')
-    setBusy(true)
-    setError(null)
-    try {
-      await (mode === 'login' ? login : signup)(email, password, captcha)
-    } catch (err) {
-      setError(err instanceof Error ? err.message : 'Something went wrong')
-    } finally {
-      setBusy(false)
-    }
+    attempt((token) => (mode === 'login' ? login : signup)(email, password, token), setBusy)
   }
 
   return (
@@ -257,7 +267,7 @@ export function AuthPage() {
                 />
               </label>
 
-              <Turnstile onToken={setCaptcha} />
+              <Turnstile key={captchaKey} onToken={(t) => (captcha.current = t)} />
 
               <AnimatePresence>
                 {error && (
