@@ -1,0 +1,254 @@
+{
+  "id": "ml-platform",
+  "model": "groq/openai/gpt-oss-120b",
+  "recorded_at": "2026-10-02T23:02:55+00:00",
+  "responses": {
+    "extract_requirements": "{\n  \"title\": \"Machine Learning Platform Engineer\",\n  \"company\": \"Helix Health\",\n  \"location\": \"Cambridge (hybrid)\",\n  \"seniority\": \"unknown\",\n  \"must_have\": [\n    \"3+ years building production ML systems\",\n    \"Python, pandas, NumPy, scikit-learn\",\n    \"PyTorch\",\n    \"Kubernetes, containerised GPU workloads\",\n    \"MLflow or Kubeflow\"\n  ],\n  \"nice_to_have\": [\n    \"Healthcare industry experience\",\n    \"AWS or GCP\",\n    \"Testing, CI/CD\"\n  ],\n  \"summary\": \"Helix Health seeks a Machine Learning Platform Engineer to build and maintain a GPU-enabled ML training and serving platform.\"\n}",
+    "score_fit": "{\n  \"assessments\": [\n    {\n      \"requirement\": \"3+ years building production ML systems\",\n      \"verdict\": \"missing\",\n      \"evidence\": null,\n      \"reasoning\": \"The CV does not mention any production machine‑learning systems.\"\n    },\n    {\n      \"requirement\": \"Python, pandas, NumPy, scikit-learn\",\n      \"verdict\": \"partial\",\n      \"evidence\": \"Final-year project: anomaly detection on card transactions using scikit-learn.\",\n      \"reasoning\": \"Shows Python and scikit-learn experience but no pandas or NumPy.\"\n    },\n    {\n      \"requirement\": \"PyTorch\",\n      \"verdict\": \"missing\",\n      \"evidence\": null,\n      \"reasoning\": \"No mention of PyTorch in the excerpts.\"\n    },\n    {\n      \"requirement\": \"Kubernetes, containerised GPU workloads\",\n      \"verdict\": \"missing\",\n      \"evidence\": null,\n      \"reasoning\": \"The CV lists Docker and AWS ECS but does not reference Kubernetes or GPU workloads.\"\n    },\n    {\n      \"requirement\": \"MLflow or Kubeflow\",\n      \"verdict\": \"missing\",\n      \"evidence\": null,\n      \"reasoning\": \"Neither MLflow nor Kubeflow is mentioned.\"\n    },\n    {\n      \"requirement\": \"Healthcare industry experience\",\n      \"verdict\": \"missing\",\n      \"evidence\": null,\n      \"reasoning\": \"The candidate’s experience is in payment, logistics and general software, not healthcare.\"\n    },\n    {\n      \"requirement\": \"AWS or GCP\",\n      \"verdict\": \"match\",\n      \"evidence\": \"AWS (ECS, S3, RDS)\",\n      \"reasoning\": \"Explicitly lists AWS services and deployments.\"\n    },\n    {\n      \"requirement\": \"Testing, CI/CD\",\n      \"verdict\": \"match\",\n      \"evidence\": \"Set up pytest suites, contract tests and GitHub Actions pipelines; deploys went from weekly to daily.\",\n      \"reasoning\": \"Demonstrates testing frameworks and CI/CD pipeline implementation.\"\n    }\n  ],\n  \"strengths\": [\n    \"Strong Python backend development experience\",\n    \"Extensive AWS deployment experience (ECS, S3, RDS)\",\n    \"Established testing and CI/CD pipelines with pytest and GitHub Actions\"\n  ],\n  \"gaps\": [\n    \"No production ML system experience\",\n    \"Missing PyTorch expertise\",\n    \"No Kubernetes or GPU‑focused containerisation\",\n    \"Lacks MLflow/Kubeflow experience\",\n    \"No healthcare industry background\"\n  ]\n}",
+    "draft_cover_letter": "I have solid experience in Python‑based data science, having built an end‑to‑end anomaly‑detection system for card transactions in my final‑year project using pandas, NumPy and scikit‑learn. That work required clean data pipelines, feature engineering, model training and evaluation, all written in production‑grade Python. In parallel, I have deployed services on AWS (ECS, S3, RDS), and I routinely set up pytest suites, contract tests and GitHub Actions pipelines that moved deployments from a weekly to a daily cadence, demonstrating a strong focus on testing and CI/CD.\n\nMy background in building reliable, automated workflows equips me to design and maintain the ML platform Helix Health needs. While I have not yet managed production‑scale ML systems, I am eager to apply my Python and AWS expertise to containerised GPU workloads and to learn the specifics of Kubernetes, PyTorch and MLflow/Kubeflow. The rigorous testing practices I have established will help ensure that any new components are robust and reproducible.\n\nI am excited about the opportunity to contribute to Helix Health’s GPU‑enabled training and serving platform, and I look forward to quickly acquiring the additional skills required to support a production ML environment in the healthcare domain.",
+    "draft_cover_letter:make it shorter": "I built an end‑to‑end anomaly‑detection system for card transactions in my final‑year project, using Python, pandas, NumPy and scikit‑learn to create data pipelines, engineer features, train models and evaluate performance. The same project was deployed on AWS (ECS, S3, RDS), and I established pytest suites, contract tests and GitHub Actions pipelines that increased deployment frequency from weekly to daily, demonstrating a strong focus on testing and CI/CD.\n\nWhile I have not yet managed production‑scale ML systems, I have no direct experience with PyTorch, Kubernetes‑based GPU workloads, or MLflow/Kubeflow, and I lack a healthcare background. I am eager to apply my Python and AWS expertise to these areas and to quickly acquire the required skills on the job.\n\nI look forward to contributing to Helix Health’s GPU‑enabled training and serving platform, bringing reliable engineering practices and a commitment to learning the specific technologies needed for a production ML environment.",
+    "draft_cover_letter:more confident tone": "I built an end‑to‑end anomaly‑detection system for card transactions in my final‑year project, using Python, pandas, NumPy and scikit‑learn to create data pipelines, engineer features, train models and evaluate performance. The solution was deployed on AWS (ECS, S3, RDS), and I introduced pytest suites, contract tests and GitHub Actions pipelines that raised deployment frequency from weekly to daily, demonstrating strong testing and CI/CD discipline.\n\nMy experience delivering a complete, production‑oriented data‑science workflow on AWS gives me a solid foundation for extending Helix Health’s ML platform. I am confident in applying the same rigorous engineering standards to GPU‑enabled training and serving pipelines, and I am eager to deepen my expertise in PyTorch, Kubernetes and MLflow/Kubeflow while contributing immediately with my proven Python and cloud skills.\n\nHelix Health’s focus on reliable, scalable machine‑learning infrastructure aligns with my commitment to building robust, automated systems. I look forward to bringing my hands‑on AWS background, testing rigor, and rapid delivery mindset to help accelerate the platform’s development and support innovative healthcare solutions.",
+    "draft_cover_letter:less formal": "I built an end‑to‑end anomaly‑detection system for card transactions in my final‑year project, using Python, pandas, NumPy and scikit‑learn to pull data, engineer features, train models and measure results. I shipped the whole pipeline on AWS (ECS, S3, RDS) and set up pytest suites, contract tests and GitHub Actions, which pushed our release cadence from weekly to daily.\n\nThat hands‑on work gives me a solid base for Helix Health’s GPU‑enabled ML platform. I’m comfortable writing production‑grade Python code, wiring it into cloud services, and automating the whole flow. I’m keen to pick up PyTorch, Kubernetes‑based GPU workloads and MLflow/Kubeflow, and I’m ready to learn the specifics of the healthcare space as I dive in.\n\nWhat excites me most is the chance to blend rigorous testing and CI/CD practices with fast‑moving ML engineering. I look forward to rolling my AWS and automation experience into a team that’s building reliable, scalable infrastructure for health‑focused AI. Let’s get the platform running smoothly and help Helix Health deliver better outcomes, together."
+  },
+  "snapshot": {
+    "job": {
+      "title": "Machine Learning Platform Engineer",
+      "company": "Helix Health",
+      "location": "Cambridge (hybrid)",
+      "seniority": "unknown",
+      "must_have": [
+        "3+ years building production ML systems",
+        "Python, pandas, NumPy, scikit-learn",
+        "PyTorch",
+        "Kubernetes, containerised GPU workloads",
+        "MLflow or Kubeflow"
+      ],
+      "nice_to_have": [
+        "Healthcare industry experience",
+        "AWS or GCP",
+        "Testing, CI/CD"
+      ],
+      "summary": "Helix Health seeks a Machine Learning Platform Engineer to build and maintain a GPU-enabled ML training and serving platform."
+    },
+    "fit": {
+      "score": 23,
+      "requirements": [
+        {
+          "requirement": "3+ years building production ML systems",
+          "verdict": "missing",
+          "evidence": null,
+          "reasoning": "The CV does not mention any production machine‑learning systems.",
+          "kind": "must",
+          "evidence_verified": false
+        },
+        {
+          "requirement": "Python, pandas, NumPy, scikit-learn",
+          "verdict": "partial",
+          "evidence": "Final-year project: anomaly detection on card transactions using scikit-learn.",
+          "reasoning": "Shows Python and scikit-learn experience but no pandas or NumPy.",
+          "kind": "must",
+          "evidence_verified": true
+        },
+        {
+          "requirement": "PyTorch",
+          "verdict": "missing",
+          "evidence": null,
+          "reasoning": "No mention of PyTorch in the excerpts.",
+          "kind": "must",
+          "evidence_verified": false
+        },
+        {
+          "requirement": "Kubernetes, containerised GPU workloads",
+          "verdict": "missing",
+          "evidence": null,
+          "reasoning": "The CV lists Docker and AWS ECS but does not reference Kubernetes or GPU workloads.",
+          "kind": "must",
+          "evidence_verified": false
+        },
+        {
+          "requirement": "MLflow or Kubeflow",
+          "verdict": "missing",
+          "evidence": null,
+          "reasoning": "Neither MLflow nor Kubeflow is mentioned.",
+          "kind": "must",
+          "evidence_verified": false
+        },
+        {
+          "requirement": "Healthcare industry experience",
+          "verdict": "missing",
+          "evidence": null,
+          "reasoning": "The candidate’s experience is in payment, logistics and general software, not healthcare.",
+          "kind": "nice",
+          "evidence_verified": false
+        },
+        {
+          "requirement": "AWS or GCP",
+          "verdict": "match",
+          "evidence": "AWS (ECS, S3, RDS)",
+          "reasoning": "Explicitly lists AWS services and deployments.",
+          "kind": "nice",
+          "evidence_verified": true
+        },
+        {
+          "requirement": "Testing, CI/CD",
+          "verdict": "match",
+          "evidence": "Set up pytest suites, contract tests and GitHub Actions pipelines; deploys went from weekly to daily.",
+          "reasoning": "Demonstrates testing frameworks and CI/CD pipeline implementation.",
+          "kind": "nice",
+          "evidence_verified": true
+        }
+      ],
+      "strengths": [
+        "Strong Python backend development experience",
+        "Extensive AWS deployment experience (ECS, S3, RDS)",
+        "Established testing and CI/CD pipelines with pytest and GitHub Actions"
+      ],
+      "gaps": [
+        "No production ML system experience",
+        "Missing PyTorch expertise",
+        "No Kubernetes or GPU‑focused containerisation",
+        "Lacks MLflow/Kubeflow experience",
+        "No healthcare industry background"
+      ]
+    },
+    "evidence": {
+      "3+ years building production ML systems": [
+        {
+          "chunk_id": "7ab74f81-ad06-4907-b949-80fae2d0c050",
+          "content": "Sam Rivera\nSoftware Engineer · Manchester, UK · sam.rivera@example.com\n\nSummary\nBackend-leaning full-stack engineer with five years of experience building payment and\nlogistics products in Python and TypeScript.\n\nExperience",
+          "similarity": 0.1868
+        },
+        {
+          "chunk_id": "62e516a2-426c-4a13-92ed-ca7c422d50ea",
+          "content": "Experience\n\nSenior Software Engineer, Ledgerly (2022 - present)\nLead engineer on the invoicing platform used by 40,000 small businesses.\nDesigned and built REST APIs in Python with FastAPI and SQLAlchemy, handling 3 million requests a day.\nOwned the PostgreSQL data model; partitioned the invoices table and tuned queries, cutting p95 API latency from 900ms to 180ms.\nIntroduced event-driven processing with Redis streams for payment reconciliation.\nSet up pytest suites, contract tests and GitHub Actions pipelines; deploys went from weekly to daily.\nMentored three junior engineers and ran the backend guild's fortnightly design reviews.",
+          "similarity": 0.0
+        },
+        {
+          "chunk_id": "286e7a6a-d78a-4831-b31c-234cbc6bfd42",
+          "content": "Skills\nPython, FastAPI, SQLAlchemy, PostgreSQL, Redis, pytest, TypeScript, React, Node.js, AWS (ECS, S3, RDS),\nTerraform, Docker, GitHub Actions, Prometheus, Grafana",
+          "similarity": 0.0
+        }
+      ],
+      "Python, pandas, NumPy, scikit-learn": [
+        {
+          "chunk_id": "286e7a6a-d78a-4831-b31c-234cbc6bfd42",
+          "content": "Skills\nPython, FastAPI, SQLAlchemy, PostgreSQL, Redis, pytest, TypeScript, React, Node.js, AWS (ECS, S3, RDS),\nTerraform, Docker, GitHub Actions, Prometheus, Grafana",
+          "similarity": 0.1026
+        },
+        {
+          "chunk_id": "2464822c-c67e-46c7-92a8-a3a1433cb363",
+          "content": "Software Engineer, Parcelpoint (2019 - 2022)\nBuilt React and TypeScript dashboards for warehouse operators, used by 600 staff daily.\nDeveloped Node.js microservices for parcel tracking, deployed on AWS ECS with Terraform.\nAdded observability with Prometheus and Grafana, reducing incident detection time by half.\nWorked with product designers to run usability tests and ship accessibility fixes (WCAG AA).\n\nProjects\nOpen-source maintainer of a small Python library for parsing bank statement CSVs (900 GitHub stars).\nBuilt a personal budgeting app with Next.js and Supabase.\n\nEducation\nBSc Computer Science, University of Manchester (2015 - 2019), upper second-class honours.\nFinal-year project: anomaly detection on card transactions using scikit-learn.",
+          "similarity": 0.0725
+        },
+        {
+          "chunk_id": "7ab74f81-ad06-4907-b949-80fae2d0c050",
+          "content": "Sam Rivera\nSoftware Engineer · Manchester, UK · sam.rivera@example.com\n\nSummary\nBackend-leaning full-stack engineer with five years of experience building payment and\nlogistics products in Python and TypeScript.\n\nExperience",
+          "similarity": 0.0682
+        }
+      ],
+      "PyTorch": [
+        {
+          "chunk_id": "7ab74f81-ad06-4907-b949-80fae2d0c050",
+          "content": "Sam Rivera\nSoftware Engineer · Manchester, UK · sam.rivera@example.com\n\nSummary\nBackend-leaning full-stack engineer with five years of experience building payment and\nlogistics products in Python and TypeScript.\n\nExperience",
+          "similarity": 0.0
+        },
+        {
+          "chunk_id": "62e516a2-426c-4a13-92ed-ca7c422d50ea",
+          "content": "Experience\n\nSenior Software Engineer, Ledgerly (2022 - present)\nLead engineer on the invoicing platform used by 40,000 small businesses.\nDesigned and built REST APIs in Python with FastAPI and SQLAlchemy, handling 3 million requests a day.\nOwned the PostgreSQL data model; partitioned the invoices table and tuned queries, cutting p95 API latency from 900ms to 180ms.\nIntroduced event-driven processing with Redis streams for payment reconciliation.\nSet up pytest suites, contract tests and GitHub Actions pipelines; deploys went from weekly to daily.\nMentored three junior engineers and ran the backend guild's fortnightly design reviews.",
+          "similarity": 0.0
+        },
+        {
+          "chunk_id": "2464822c-c67e-46c7-92a8-a3a1433cb363",
+          "content": "Software Engineer, Parcelpoint (2019 - 2022)\nBuilt React and TypeScript dashboards for warehouse operators, used by 600 staff daily.\nDeveloped Node.js microservices for parcel tracking, deployed on AWS ECS with Terraform.\nAdded observability with Prometheus and Grafana, reducing incident detection time by half.\nWorked with product designers to run usability tests and ship accessibility fixes (WCAG AA).\n\nProjects\nOpen-source maintainer of a small Python library for parsing bank statement CSVs (900 GitHub stars).\nBuilt a personal budgeting app with Next.js and Supabase.\n\nEducation\nBSc Computer Science, University of Manchester (2015 - 2019), upper second-class honours.\nFinal-year project: anomaly detection on card transactions using scikit-learn.",
+          "similarity": 0.0
+        }
+      ],
+      "Kubernetes, containerised GPU workloads": [
+        {
+          "chunk_id": "7ab74f81-ad06-4907-b949-80fae2d0c050",
+          "content": "Sam Rivera\nSoftware Engineer · Manchester, UK · sam.rivera@example.com\n\nSummary\nBackend-leaning full-stack engineer with five years of experience building payment and\nlogistics products in Python and TypeScript.\n\nExperience",
+          "similarity": 0.0
+        },
+        {
+          "chunk_id": "62e516a2-426c-4a13-92ed-ca7c422d50ea",
+          "content": "Experience\n\nSenior Software Engineer, Ledgerly (2022 - present)\nLead engineer on the invoicing platform used by 40,000 small businesses.\nDesigned and built REST APIs in Python with FastAPI and SQLAlchemy, handling 3 million requests a day.\nOwned the PostgreSQL data model; partitioned the invoices table and tuned queries, cutting p95 API latency from 900ms to 180ms.\nIntroduced event-driven processing with Redis streams for payment reconciliation.\nSet up pytest suites, contract tests and GitHub Actions pipelines; deploys went from weekly to daily.\nMentored three junior engineers and ran the backend guild's fortnightly design reviews.",
+          "similarity": 0.0
+        },
+        {
+          "chunk_id": "2464822c-c67e-46c7-92a8-a3a1433cb363",
+          "content": "Software Engineer, Parcelpoint (2019 - 2022)\nBuilt React and TypeScript dashboards for warehouse operators, used by 600 staff daily.\nDeveloped Node.js microservices for parcel tracking, deployed on AWS ECS with Terraform.\nAdded observability with Prometheus and Grafana, reducing incident detection time by half.\nWorked with product designers to run usability tests and ship accessibility fixes (WCAG AA).\n\nProjects\nOpen-source maintainer of a small Python library for parsing bank statement CSVs (900 GitHub stars).\nBuilt a personal budgeting app with Next.js and Supabase.\n\nEducation\nBSc Computer Science, University of Manchester (2015 - 2019), upper second-class honours.\nFinal-year project: anomaly detection on card transactions using scikit-learn.",
+          "similarity": 0.0
+        }
+      ],
+      "MLflow or Kubeflow": [
+        {
+          "chunk_id": "7ab74f81-ad06-4907-b949-80fae2d0c050",
+          "content": "Sam Rivera\nSoftware Engineer · Manchester, UK · sam.rivera@example.com\n\nSummary\nBackend-leaning full-stack engineer with five years of experience building payment and\nlogistics products in Python and TypeScript.\n\nExperience",
+          "similarity": 0.0
+        },
+        {
+          "chunk_id": "62e516a2-426c-4a13-92ed-ca7c422d50ea",
+          "content": "Experience\n\nSenior Software Engineer, Ledgerly (2022 - present)\nLead engineer on the invoicing platform used by 40,000 small businesses.\nDesigned and built REST APIs in Python with FastAPI and SQLAlchemy, handling 3 million requests a day.\nOwned the PostgreSQL data model; partitioned the invoices table and tuned queries, cutting p95 API latency from 900ms to 180ms.\nIntroduced event-driven processing with Redis streams for payment reconciliation.\nSet up pytest suites, contract tests and GitHub Actions pipelines; deploys went from weekly to daily.\nMentored three junior engineers and ran the backend guild's fortnightly design reviews.",
+          "similarity": 0.0
+        },
+        {
+          "chunk_id": "2464822c-c67e-46c7-92a8-a3a1433cb363",
+          "content": "Software Engineer, Parcelpoint (2019 - 2022)\nBuilt React and TypeScript dashboards for warehouse operators, used by 600 staff daily.\nDeveloped Node.js microservices for parcel tracking, deployed on AWS ECS with Terraform.\nAdded observability with Prometheus and Grafana, reducing incident detection time by half.\nWorked with product designers to run usability tests and ship accessibility fixes (WCAG AA).\n\nProjects\nOpen-source maintainer of a small Python library for parsing bank statement CSVs (900 GitHub stars).\nBuilt a personal budgeting app with Next.js and Supabase.\n\nEducation\nBSc Computer Science, University of Manchester (2015 - 2019), upper second-class honours.\nFinal-year project: anomaly detection on card transactions using scikit-learn.",
+          "similarity": 0.0
+        }
+      ],
+      "Healthcare industry experience": [
+        {
+          "chunk_id": "7ab74f81-ad06-4907-b949-80fae2d0c050",
+          "content": "Sam Rivera\nSoftware Engineer · Manchester, UK · sam.rivera@example.com\n\nSummary\nBackend-leaning full-stack engineer with five years of experience building payment and\nlogistics products in Python and TypeScript.\n\nExperience",
+          "similarity": 0.1761
+        },
+        {
+          "chunk_id": "62e516a2-426c-4a13-92ed-ca7c422d50ea",
+          "content": "Experience\n\nSenior Software Engineer, Ledgerly (2022 - present)\nLead engineer on the invoicing platform used by 40,000 small businesses.\nDesigned and built REST APIs in Python with FastAPI and SQLAlchemy, handling 3 million requests a day.\nOwned the PostgreSQL data model; partitioned the invoices table and tuned queries, cutting p95 API latency from 900ms to 180ms.\nIntroduced event-driven processing with Redis streams for payment reconciliation.\nSet up pytest suites, contract tests and GitHub Actions pipelines; deploys went from weekly to daily.\nMentored three junior engineers and ran the backend guild's fortnightly design reviews.",
+          "similarity": 0.0994
+        },
+        {
+          "chunk_id": "2464822c-c67e-46c7-92a8-a3a1433cb363",
+          "content": "Software Engineer, Parcelpoint (2019 - 2022)\nBuilt React and TypeScript dashboards for warehouse operators, used by 600 staff daily.\nDeveloped Node.js microservices for parcel tracking, deployed on AWS ECS with Terraform.\nAdded observability with Prometheus and Grafana, reducing incident detection time by half.\nWorked with product designers to run usability tests and ship accessibility fixes (WCAG AA).\n\nProjects\nOpen-source maintainer of a small Python library for parsing bank statement CSVs (900 GitHub stars).\nBuilt a personal budgeting app with Next.js and Supabase.\n\nEducation\nBSc Computer Science, University of Manchester (2015 - 2019), upper second-class honours.\nFinal-year project: anomaly detection on card transactions using scikit-learn.",
+          "similarity": 0.0
+        }
+      ],
+      "AWS or GCP": [
+        {
+          "chunk_id": "286e7a6a-d78a-4831-b31c-234cbc6bfd42",
+          "content": "Skills\nPython, FastAPI, SQLAlchemy, PostgreSQL, Redis, pytest, TypeScript, React, Node.js, AWS (ECS, S3, RDS),\nTerraform, Docker, GitHub Actions, Prometheus, Grafana",
+          "similarity": 0.1325
+        },
+        {
+          "chunk_id": "7ab74f81-ad06-4907-b949-80fae2d0c050",
+          "content": "Sam Rivera\nSoftware Engineer · Manchester, UK · sam.rivera@example.com\n\nSummary\nBackend-leaning full-stack engineer with five years of experience building payment and\nlogistics products in Python and TypeScript.\n\nExperience",
+          "similarity": 0.088
+        },
+        {
+          "chunk_id": "2464822c-c67e-46c7-92a8-a3a1433cb363",
+          "content": "Software Engineer, Parcelpoint (2019 - 2022)\nBuilt React and TypeScript dashboards for warehouse operators, used by 600 staff daily.\nDeveloped Node.js microservices for parcel tracking, deployed on AWS ECS with Terraform.\nAdded observability with Prometheus and Grafana, reducing incident detection time by half.\nWorked with product designers to run usability tests and ship accessibility fixes (WCAG AA).\n\nProjects\nOpen-source maintainer of a small Python library for parsing bank statement CSVs (900 GitHub stars).\nBuilt a personal budgeting app with Next.js and Supabase.\n\nEducation\nBSc Computer Science, University of Manchester (2015 - 2019), upper second-class honours.\nFinal-year project: anomaly detection on card transactions using scikit-learn.",
+          "similarity": 0.0468
+        }
+      ],
+      "Testing, CI/CD": [
+        {
+          "chunk_id": "7ab74f81-ad06-4907-b949-80fae2d0c050",
+          "content": "Sam Rivera\nSoftware Engineer · Manchester, UK · sam.rivera@example.com\n\nSummary\nBackend-leaning full-stack engineer with five years of experience building payment and\nlogistics products in Python and TypeScript.\n\nExperience",
+          "similarity": 0.0
+        },
+        {
+          "chunk_id": "62e516a2-426c-4a13-92ed-ca7c422d50ea",
+          "content": "Experience\n\nSenior Software Engineer, Ledgerly (2022 - present)\nLead engineer on the invoicing platform used by 40,000 small businesses.\nDesigned and built REST APIs in Python with FastAPI and SQLAlchemy, handling 3 million requests a day.\nOwned the PostgreSQL data model; partitioned the invoices table and tuned queries, cutting p95 API latency from 900ms to 180ms.\nIntroduced event-driven processing with Redis streams for payment reconciliation.\nSet up pytest suites, contract tests and GitHub Actions pipelines; deploys went from weekly to daily.\nMentored three junior engineers and ran the backend guild's fortnightly design reviews.",
+          "similarity": 0.0
+        },
+        {
+          "chunk_id": "2464822c-c67e-46c7-92a8-a3a1433cb363",
+          "content": "Software Engineer, Parcelpoint (2019 - 2022)\nBuilt React and TypeScript dashboards for warehouse operators, used by 600 staff daily.\nDeveloped Node.js microservices for parcel tracking, deployed on AWS ECS with Terraform.\nAdded observability with Prometheus and Grafana, reducing incident detection time by half.\nWorked with product designers to run usability tests and ship accessibility fixes (WCAG AA).\n\nProjects\nOpen-source maintainer of a small Python library for parsing bank statement CSVs (900 GitHub stars).\nBuilt a personal budgeting app with Next.js and Supabase.\n\nEducation\nBSc Computer Science, University of Manchester (2015 - 2019), upper second-class honours.\nFinal-year project: anomaly detection on card transactions using scikit-learn.",
+          "similarity": 0.0
+        }
+      ]
+    },
+    "cover_letter": "I have solid experience in Python‑based data science, having built an end‑to‑end anomaly‑detection system for card transactions in my final‑year project using pandas, NumPy and scikit‑learn. That work required clean data pipelines, feature engineering, model training and evaluation, all written in production‑grade Python. In parallel, I have deployed services on AWS (ECS, S3, RDS), and I routinely set up pytest suites, contract tests and GitHub Actions pipelines that moved deployments from a weekly to a daily cadence, demonstrating a strong focus on testing and CI/CD.\n\nMy background in building reliable, automated workflows equips me to design and maintain the ML platform Helix Health needs. While I have not yet managed production‑scale ML systems, I am eager to apply my Python and AWS expertise to containerised GPU workloads and to learn the specifics of Kubernetes, PyTorch and MLflow/Kubeflow. The rigorous testing practices I have established will help ensure that any new components are robust and reproducible.\n\nI am excited about the opportunity to contribute to Helix Health’s GPU‑enabled training and serving platform, and I look forward to quickly acquiring the additional skills required to support a production ML environment in the healthcare domain."
+  }
+}

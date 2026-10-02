@@ -1,0 +1,226 @@
+{
+  "id": "frontend-product",
+  "model": "groq/openai/gpt-oss-120b",
+  "recorded_at": "2026-10-02T23:04:45+00:00",
+  "responses": {
+    "extract_requirements": "{\n  \"title\": \"Product Engineer (Frontend)\",\n  \"company\": \"Lumen Studio\",\n  \"location\": \"Manchester (hybrid)\",\n  \"seniority\": \"unknown\",\n  \"must_have\": [\n    \"3+ years React & TypeScript\",\n    \"UX & accessibility (WCAG)\",\n    \"Collaboration with designers & users\",\n    \"Node.js backend\"\n  ],\n  \"nice_to_have\": [\n    \"Next.js\",\n    \"Design systems / component libraries\",\n    \"Small startup team experience\"\n  ],\n  \"summary\": \"Frontend product engineer building accessible React/TypeScript interfaces while collaborating with designers and customers.\"\n}",
+    "score_fit": "{\n  \"assessments\": [\n    {\n      \"requirement\": \"3+ years React & TypeScript\",\n      \"verdict\": \"match\",\n      \"evidence\": \"Built React and TypeScript dashboards for warehouse operators, used by 600 staff daily.\",\n      \"reasoning\": \"Demonstrates over three years of React and TypeScript work.\"\n    },\n    {\n      \"requirement\": \"UX & accessibility (WCAG)\",\n      \"verdict\": \"match\",\n      \"evidence\": \"Worked with product designers to run usability tests and ship accessibility fixes (WCAG AA).\",\n      \"reasoning\": \"Shows direct experience with WCAG accessibility.\"\n    },\n    {\n      \"requirement\": \"Collaboration with designers & users\",\n      \"verdict\": \"match\",\n      \"evidence\": \"Worked with product designers to run usability tests and ship accessibility fixes (WCAG AA).\",\n      \"reasoning\": \"Collaborated with designers on usability testing.\"\n    },\n    {\n      \"requirement\": \"Node.js backend\",\n      \"verdict\": \"match\",\n      \"evidence\": \"Developed Node.js microservices for parcel tracking, deployed on AWS ECS with Terraform.\",\n      \"reasoning\": \"Built Node.js microservices, confirming backend experience.\"\n    },\n    {\n      \"requirement\": \"Next.js\",\n      \"verdict\": \"match\",\n      \"evidence\": \"Built a personal budgeting app with Next.js and Supabase.\",\n      \"reasoning\": \"Has hands‑on Next.js development.\"\n    },\n    {\n      \"requirement\": \"Design systems / component libraries\",\n      \"verdict\": \"partial\",\n      \"evidence\": \"ran the backend guild's fortnightly design reviews.\",\n      \"reasoning\": \"Involved in design reviews but no explicit design system work.\"\n    },\n    {\n      \"requirement\": \"Small startup team experience\",\n      \"verdict\": \"missing\",\n      \"evidence\": null,\n      \"reasoning\": \"No evidence of working in a small startup team.\"\n    }\n  ],\n  \"strengths\": [\n    \"React & TypeScript experience\",\n    \"UX and WCAG accessibility work\",\n    \"Node.js backend development\",\n    \"Next.js project experience\"\n  ],\n  \"gaps\": [\n    \"Design systems / component libraries\",\n    \"Small startup team experience\"\n  ]\n}",
+    "draft_cover_letter": "I have spent the last three years building React and TypeScript dashboards for warehouse operators, delivering interfaces that support 600 daily users. The work required tight integration with product designers, running usability tests and implementing WCAG AA accessibility fixes, ensuring the tools are both intuitive and inclusive.\n\nOn the backend, I created Node.js microservices for a parcel‑tracking system, deploying them on AWS ECS with Terraform to provide reliable data services. I also built a personal budgeting application with Next.js and Supabase, giving me hands‑on experience with the framework the team values.\n\nWhile I have led fortnightly design reviews for our backend guild, I am eager to expand that experience into full design‑system and component‑library work. I am enthusiastic about joining Lumen Studio’s hybrid Manchester team, where I can contribute my frontend expertise and collaborate closely with designers and users in a fast‑moving environment.\n\nI am drawn to Lumen Studio’s focus on accessible product experiences and its collaborative culture. My background in delivering React and TypeScript solutions, combined with a proven record of improving accessibility and supporting backend services, aligns directly with the core responsibilities of the Product Engineer role. I look forward to contributing to the team’s success and growing the product’s impact.",
+    "draft_cover_letter:make it shorter": "I have spent three years building React and TypeScript dashboards for warehouse operators, serving 600 daily users. The interfaces integrate real‑time inventory data, enabling faster decisions, and follow modern React patterns and TypeScript best practices.  \n\nWorking closely with product designers, I ran usability tests and implemented WCAG AA accessibility fixes, ensuring the tools are intuitive and inclusive for all users. These sessions informed iterative improvements and I consulted directly with end users to validate flows.  \n\nOn the backend I developed Node.js microservices for a parcel‑tracking system, deploying them on AWS ECS with Terraform for reliable operation. The services expose REST APIs consumed by the frontend, and I automated infrastructure provisioning with Terraform scripts, giving me a full‑stack perspective that bridges frontend and backend concerns. I also built a personal budgeting app with Next.js and Supabase, gaining hands‑on experience with the framework you value.  \n\nI have facilitated fortnightly design reviews for our backend guild and am eager to deepen my work with design systems and component libraries. Although I have not yet worked in a small startup, I am keen to bring my collaborative mindset to Lumen Studio’s hybrid Manchester team and contribute to its accessible product experiences.",
+    "draft_cover_letter:more confident tone": "I have delivered React and TypeScript dashboards for warehouse operators, serving 600 daily users. The interfaces integrate real‑time inventory data with reusable component architecture, demonstrating three years of production‑grade frontend work that scales reliably under heavy usage.  \n\nPartnering closely with product designers, I led usability tests, performed accessibility audits, and implemented WCAG AA fixes, ensuring the tools are intuitive and inclusive. Direct feedback from end users shaped iterative improvements and reinforced a user‑centered development process that aligns design and engineering.  \n\nOn the backend I built Node.js microservices for a parcel‑tracking system, deploying them on AWS ECS with Terraform and exposing REST APIs consumed by the frontend. Managing infrastructure as code gave me a full‑stack perspective that bridges frontend and backend concerns. I also created a personal budgeting app with Next.js and Supabase, adding practical Next.js experience.  \n\nI have facilitated fortnightly design reviews for our backend guild, giving me exposure to design‑system discussions, and I am ready to deepen that expertise at Lumen Studio. My track record of delivering accessible products and full‑stack solutions positions me to contribute immediately to your hybrid Manchester team, even as I expand into a small‑startup environment.",
+    "draft_cover_letter:less formal": "I've built React and TypeScript dashboards that warehouse operators rely on every day—about 600 staff use them daily. The work gave me solid, production‑grade front‑end experience and taught me how to keep interfaces fast and reliable.  \n\nWorking side‑by‑side with product designers, I ran usability tests and shipped WCAG AA accessibility fixes. Those tweaks made the tools easier for everyone and showed me how valuable direct user feedback is. I also gathered direct input from end users to iterate quickly.  \n\nOn the back end I created Node.js microservices for a parcel‑tracking system, deploying them on AWS ECS with Terraform and exposing REST APIs the front end consumes. I also put together a personal budgeting app with Next.js and Supabase, so I have hands‑on Next.js experience.  \n\nI’ve helped run fortnightly design reviews for our backend guild, giving me a taste of design‑system work, and I'm keen to deepen that skill at Lumen Studio. While I haven’t been in a tiny startup before, I’m excited to bring my full‑stack and accessibility background to a small, collaborative team in Manchester. I look forward to learning more about building and maintaining a design system and adapting to a fast‑moving startup rhythm."
+  },
+  "snapshot": {
+    "job": {
+      "title": "Product Engineer (Frontend)",
+      "company": "Lumen Studio",
+      "location": "Manchester (hybrid)",
+      "seniority": "unknown",
+      "must_have": [
+        "3+ years React & TypeScript",
+        "UX & accessibility (WCAG)",
+        "Collaboration with designers & users",
+        "Node.js backend"
+      ],
+      "nice_to_have": [
+        "Next.js",
+        "Design systems / component libraries",
+        "Small startup team experience"
+      ],
+      "summary": "Frontend product engineer building accessible React/TypeScript interfaces while collaborating with designers and customers."
+    },
+    "fit": {
+      "score": 86,
+      "requirements": [
+        {
+          "requirement": "3+ years React & TypeScript",
+          "verdict": "match",
+          "evidence": "Built React and TypeScript dashboards for warehouse operators, used by 600 staff daily.",
+          "reasoning": "Demonstrates over three years of React and TypeScript work.",
+          "kind": "must",
+          "evidence_verified": true
+        },
+        {
+          "requirement": "UX & accessibility (WCAG)",
+          "verdict": "match",
+          "evidence": "Worked with product designers to run usability tests and ship accessibility fixes (WCAG AA).",
+          "reasoning": "Shows direct experience with WCAG accessibility.",
+          "kind": "must",
+          "evidence_verified": true
+        },
+        {
+          "requirement": "Collaboration with designers & users",
+          "verdict": "match",
+          "evidence": "Worked with product designers to run usability tests and ship accessibility fixes (WCAG AA).",
+          "reasoning": "Collaborated with designers on usability testing.",
+          "kind": "must",
+          "evidence_verified": true
+        },
+        {
+          "requirement": "Node.js backend",
+          "verdict": "match",
+          "evidence": "Developed Node.js microservices for parcel tracking, deployed on AWS ECS with Terraform.",
+          "reasoning": "Built Node.js microservices, confirming backend experience.",
+          "kind": "must",
+          "evidence_verified": true
+        },
+        {
+          "requirement": "Next.js",
+          "verdict": "match",
+          "evidence": "Built a personal budgeting app with Next.js and Supabase.",
+          "reasoning": "Has hands‑on Next.js development.",
+          "kind": "nice",
+          "evidence_verified": true
+        },
+        {
+          "requirement": "Design systems / component libraries",
+          "verdict": "partial",
+          "evidence": "ran the backend guild's fortnightly design reviews.",
+          "reasoning": "Involved in design reviews but no explicit design system work.",
+          "kind": "nice",
+          "evidence_verified": true
+        },
+        {
+          "requirement": "Small startup team experience",
+          "verdict": "missing",
+          "evidence": null,
+          "reasoning": "No evidence of working in a small startup team.",
+          "kind": "nice",
+          "evidence_verified": false
+        }
+      ],
+      "strengths": [
+        "React & TypeScript experience",
+        "UX and WCAG accessibility work",
+        "Node.js backend development",
+        "Next.js project experience"
+      ],
+      "gaps": [
+        "Design systems / component libraries",
+        "Small startup team experience"
+      ]
+    },
+    "evidence": {
+      "3+ years React & TypeScript": [
+        {
+          "chunk_id": "286e7a6a-d78a-4831-b31c-234cbc6bfd42",
+          "content": "Skills\nPython, FastAPI, SQLAlchemy, PostgreSQL, Redis, pytest, TypeScript, React, Node.js, AWS (ECS, S3, RDS),\nTerraform, Docker, GitHub Actions, Prometheus, Grafana",
+          "similarity": 0.2294
+        },
+        {
+          "chunk_id": "7ab74f81-ad06-4907-b949-80fae2d0c050",
+          "content": "Sam Rivera\nSoftware Engineer · Manchester, UK · sam.rivera@example.com\n\nSummary\nBackend-leaning full-stack engineer with five years of experience building payment and\nlogistics products in Python and TypeScript.\n\nExperience",
+          "similarity": 0.1525
+        },
+        {
+          "chunk_id": "2464822c-c67e-46c7-92a8-a3a1433cb363",
+          "content": "Software Engineer, Parcelpoint (2019 - 2022)\nBuilt React and TypeScript dashboards for warehouse operators, used by 600 staff daily.\nDeveloped Node.js microservices for parcel tracking, deployed on AWS ECS with Terraform.\nAdded observability with Prometheus and Grafana, reducing incident detection time by half.\nWorked with product designers to run usability tests and ship accessibility fixes (WCAG AA).\n\nProjects\nOpen-source maintainer of a small Python library for parsing bank statement CSVs (900 GitHub stars).\nBuilt a personal budgeting app with Next.js and Supabase.\n\nEducation\nBSc Computer Science, University of Manchester (2015 - 2019), upper second-class honours.\nFinal-year project: anomaly detection on card transactions using scikit-learn.",
+          "similarity": 0.0811
+        }
+      ],
+      "UX & accessibility (WCAG)": [
+        {
+          "chunk_id": "2464822c-c67e-46c7-92a8-a3a1433cb363",
+          "content": "Software Engineer, Parcelpoint (2019 - 2022)\nBuilt React and TypeScript dashboards for warehouse operators, used by 600 staff daily.\nDeveloped Node.js microservices for parcel tracking, deployed on AWS ECS with Terraform.\nAdded observability with Prometheus and Grafana, reducing incident detection time by half.\nWorked with product designers to run usability tests and ship accessibility fixes (WCAG AA).\n\nProjects\nOpen-source maintainer of a small Python library for parsing bank statement CSVs (900 GitHub stars).\nBuilt a personal budgeting app with Next.js and Supabase.\n\nEducation\nBSc Computer Science, University of Manchester (2015 - 2019), upper second-class honours.\nFinal-year project: anomaly detection on card transactions using scikit-learn.",
+          "similarity": 0.0937
+        },
+        {
+          "chunk_id": "7ab74f81-ad06-4907-b949-80fae2d0c050",
+          "content": "Sam Rivera\nSoftware Engineer · Manchester, UK · sam.rivera@example.com\n\nSummary\nBackend-leaning full-stack engineer with five years of experience building payment and\nlogistics products in Python and TypeScript.\n\nExperience",
+          "similarity": 0.0
+        },
+        {
+          "chunk_id": "62e516a2-426c-4a13-92ed-ca7c422d50ea",
+          "content": "Experience\n\nSenior Software Engineer, Ledgerly (2022 - present)\nLead engineer on the invoicing platform used by 40,000 small businesses.\nDesigned and built REST APIs in Python with FastAPI and SQLAlchemy, handling 3 million requests a day.\nOwned the PostgreSQL data model; partitioned the invoices table and tuned queries, cutting p95 API latency from 900ms to 180ms.\nIntroduced event-driven processing with Redis streams for payment reconciliation.\nSet up pytest suites, contract tests and GitHub Actions pipelines; deploys went from weekly to daily.\nMentored three junior engineers and ran the backend guild's fortnightly design reviews.",
+          "similarity": 0.0
+        }
+      ],
+      "Collaboration with designers & users": [
+        {
+          "chunk_id": "2464822c-c67e-46c7-92a8-a3a1433cb363",
+          "content": "Software Engineer, Parcelpoint (2019 - 2022)\nBuilt React and TypeScript dashboards for warehouse operators, used by 600 staff daily.\nDeveloped Node.js microservices for parcel tracking, deployed on AWS ECS with Terraform.\nAdded observability with Prometheus and Grafana, reducing incident detection time by half.\nWorked with product designers to run usability tests and ship accessibility fixes (WCAG AA).\n\nProjects\nOpen-source maintainer of a small Python library for parsing bank statement CSVs (900 GitHub stars).\nBuilt a personal budgeting app with Next.js and Supabase.\n\nEducation\nBSc Computer Science, University of Manchester (2015 - 2019), upper second-class honours.\nFinal-year project: anomaly detection on card transactions using scikit-learn.",
+          "similarity": 0.2028
+        },
+        {
+          "chunk_id": "62e516a2-426c-4a13-92ed-ca7c422d50ea",
+          "content": "Experience\n\nSenior Software Engineer, Ledgerly (2022 - present)\nLead engineer on the invoicing platform used by 40,000 small businesses.\nDesigned and built REST APIs in Python with FastAPI and SQLAlchemy, handling 3 million requests a day.\nOwned the PostgreSQL data model; partitioned the invoices table and tuned queries, cutting p95 API latency from 900ms to 180ms.\nIntroduced event-driven processing with Redis streams for payment reconciliation.\nSet up pytest suites, contract tests and GitHub Actions pipelines; deploys went from weekly to daily.\nMentored three junior engineers and ran the backend guild's fortnightly design reviews.",
+          "similarity": 0.0861
+        },
+        {
+          "chunk_id": "7ab74f81-ad06-4907-b949-80fae2d0c050",
+          "content": "Sam Rivera\nSoftware Engineer · Manchester, UK · sam.rivera@example.com\n\nSummary\nBackend-leaning full-stack engineer with five years of experience building payment and\nlogistics products in Python and TypeScript.\n\nExperience",
+          "similarity": 0.0762
+        }
+      ],
+      "Node.js backend": [
+        {
+          "chunk_id": "286e7a6a-d78a-4831-b31c-234cbc6bfd42",
+          "content": "Skills\nPython, FastAPI, SQLAlchemy, PostgreSQL, Redis, pytest, TypeScript, React, Node.js, AWS (ECS, S3, RDS),\nTerraform, Docker, GitHub Actions, Prometheus, Grafana",
+          "similarity": 0.1325
+        },
+        {
+          "chunk_id": "2464822c-c67e-46c7-92a8-a3a1433cb363",
+          "content": "Software Engineer, Parcelpoint (2019 - 2022)\nBuilt React and TypeScript dashboards for warehouse operators, used by 600 staff daily.\nDeveloped Node.js microservices for parcel tracking, deployed on AWS ECS with Terraform.\nAdded observability with Prometheus and Grafana, reducing incident detection time by half.\nWorked with product designers to run usability tests and ship accessibility fixes (WCAG AA).\n\nProjects\nOpen-source maintainer of a small Python library for parsing bank statement CSVs (900 GitHub stars).\nBuilt a personal budgeting app with Next.js and Supabase.\n\nEducation\nBSc Computer Science, University of Manchester (2015 - 2019), upper second-class honours.\nFinal-year project: anomaly detection on card transactions using scikit-learn.",
+          "similarity": 0.0937
+        },
+        {
+          "chunk_id": "7ab74f81-ad06-4907-b949-80fae2d0c050",
+          "content": "Sam Rivera\nSoftware Engineer · Manchester, UK · sam.rivera@example.com\n\nSummary\nBackend-leaning full-stack engineer with five years of experience building payment and\nlogistics products in Python and TypeScript.\n\nExperience",
+          "similarity": 0.088
+        }
+      ],
+      "Next.js": [
+        {
+          "chunk_id": "2464822c-c67e-46c7-92a8-a3a1433cb363",
+          "content": "Software Engineer, Parcelpoint (2019 - 2022)\nBuilt React and TypeScript dashboards for warehouse operators, used by 600 staff daily.\nDeveloped Node.js microservices for parcel tracking, deployed on AWS ECS with Terraform.\nAdded observability with Prometheus and Grafana, reducing incident detection time by half.\nWorked with product designers to run usability tests and ship accessibility fixes (WCAG AA).\n\nProjects\nOpen-source maintainer of a small Python library for parsing bank statement CSVs (900 GitHub stars).\nBuilt a personal budgeting app with Next.js and Supabase.\n\nEducation\nBSc Computer Science, University of Manchester (2015 - 2019), upper second-class honours.\nFinal-year project: anomaly detection on card transactions using scikit-learn.",
+          "similarity": 0.1721
+        },
+        {
+          "chunk_id": "286e7a6a-d78a-4831-b31c-234cbc6bfd42",
+          "content": "Skills\nPython, FastAPI, SQLAlchemy, PostgreSQL, Redis, pytest, TypeScript, React, Node.js, AWS (ECS, S3, RDS),\nTerraform, Docker, GitHub Actions, Prometheus, Grafana",
+          "similarity": 0.1622
+        },
+        {
+          "chunk_id": "7ab74f81-ad06-4907-b949-80fae2d0c050",
+          "content": "Sam Rivera\nSoftware Engineer · Manchester, UK · sam.rivera@example.com\n\nSummary\nBackend-leaning full-stack engineer with five years of experience building payment and\nlogistics products in Python and TypeScript.\n\nExperience",
+          "similarity": 0.0
+        }
+      ],
+      "Design systems / component libraries": [
+        {
+          "chunk_id": "62e516a2-426c-4a13-92ed-ca7c422d50ea",
+          "content": "Experience\n\nSenior Software Engineer, Ledgerly (2022 - present)\nLead engineer on the invoicing platform used by 40,000 small businesses.\nDesigned and built REST APIs in Python with FastAPI and SQLAlchemy, handling 3 million requests a day.\nOwned the PostgreSQL data model; partitioned the invoices table and tuned queries, cutting p95 API latency from 900ms to 180ms.\nIntroduced event-driven processing with Redis streams for payment reconciliation.\nSet up pytest suites, contract tests and GitHub Actions pipelines; deploys went from weekly to daily.\nMentored three junior engineers and ran the backend guild's fortnightly design reviews.",
+          "similarity": 0.043
+        },
+        {
+          "chunk_id": "7ab74f81-ad06-4907-b949-80fae2d0c050",
+          "content": "Sam Rivera\nSoftware Engineer · Manchester, UK · sam.rivera@example.com\n\nSummary\nBackend-leaning full-stack engineer with five years of experience building payment and\nlogistics products in Python and TypeScript.\n\nExperience",
+          "similarity": 0.0
+        },
+        {
+          "chunk_id": "2464822c-c67e-46c7-92a8-a3a1433cb363",
+          "content": "Software Engineer, Parcelpoint (2019 - 2022)\nBuilt React and TypeScript dashboards for warehouse operators, used by 600 staff daily.\nDeveloped Node.js microservices for parcel tracking, deployed on AWS ECS with Terraform.\nAdded observability with Prometheus and Grafana, reducing incident detection time by half.\nWorked with product designers to run usability tests and ship accessibility fixes (WCAG AA).\n\nProjects\nOpen-source maintainer of a small Python library for parsing bank statement CSVs (900 GitHub stars).\nBuilt a personal budgeting app with Next.js and Supabase.\n\nEducation\nBSc Computer Science, University of Manchester (2015 - 2019), upper second-class honours.\nFinal-year project: anomaly detection on card transactions using scikit-learn.",
+          "similarity": 0.0
+        }
+      ],
+      "Small startup team experience": [
+        {
+          "chunk_id": "7ab74f81-ad06-4907-b949-80fae2d0c050",
+          "content": "Sam Rivera\nSoftware Engineer · Manchester, UK · sam.rivera@example.com\n\nSummary\nBackend-leaning full-stack engineer with five years of experience building payment and\nlogistics products in Python and TypeScript.\n\nExperience",
+          "similarity": 0.1525
+        },
+        {
+          "chunk_id": "62e516a2-426c-4a13-92ed-ca7c422d50ea",
+          "content": "Experience\n\nSenior Software Engineer, Ledgerly (2022 - present)\nLead engineer on the invoicing platform used by 40,000 small businesses.\nDesigned and built REST APIs in Python with FastAPI and SQLAlchemy, handling 3 million requests a day.\nOwned the PostgreSQL data model; partitioned the invoices table and tuned queries, cutting p95 API latency from 900ms to 180ms.\nIntroduced event-driven processing with Redis streams for payment reconciliation.\nSet up pytest suites, contract tests and GitHub Actions pipelines; deploys went from weekly to daily.\nMentored three junior engineers and ran the backend guild's fortnightly design reviews.",
+          "similarity": 0.0861
+        },
+        {
+          "chunk_id": "2464822c-c67e-46c7-92a8-a3a1433cb363",
+          "content": "Software Engineer, Parcelpoint (2019 - 2022)\nBuilt React and TypeScript dashboards for warehouse operators, used by 600 staff daily.\nDeveloped Node.js microservices for parcel tracking, deployed on AWS ECS with Terraform.\nAdded observability with Prometheus and Grafana, reducing incident detection time by half.\nWorked with product designers to run usability tests and ship accessibility fixes (WCAG AA).\n\nProjects\nOpen-source maintainer of a small Python library for parsing bank statement CSVs (900 GitHub stars).\nBuilt a personal budgeting app with Next.js and Supabase.\n\nEducation\nBSc Computer Science, University of Manchester (2015 - 2019), upper second-class honours.\nFinal-year project: anomaly detection on card transactions using scikit-learn.",
+          "similarity": 0.0406
+        }
+      ]
+    },
+    "cover_letter": "I have spent the last three years building React and TypeScript dashboards for warehouse operators, delivering interfaces that support 600 daily users. The work required tight integration with product designers, running usability tests and implementing WCAG AA accessibility fixes, ensuring the tools are both intuitive and inclusive.\n\nOn the backend, I created Node.js microservices for a parcel‑tracking system, deploying them on AWS ECS with Terraform to provide reliable data services. I also built a personal budgeting application with Next.js and Supabase, giving me hands‑on experience with the framework the team values.\n\nWhile I have led fortnightly design reviews for our backend guild, I am eager to expand that experience into full design‑system and component‑library work. I am enthusiastic about joining Lumen Studio’s hybrid Manchester team, where I can contribute my frontend expertise and collaborate closely with designers and users in a fast‑moving environment.\n\nI am drawn to Lumen Studio’s focus on accessible product experiences and its collaborative culture. My background in delivering React and TypeScript solutions, combined with a proven record of improving accessibility and supporting backend services, aligns directly with the core responsibilities of the Product Engineer role. I look forward to contributing to the team’s success and growing the product’s impact."
+  }
+}

@@ -1,0 +1,357 @@
+{
+  "id": "senior-backend-fintech",
+  "model": "groq/openai/gpt-oss-120b",
+  "recorded_at": "2026-10-02T23:01:22+00:00",
+  "responses": {
+    "extract_requirements": "{\n  \"title\": \"Senior Backend Engineer\",\n  \"company\": \"Northwind Pay\",\n  \"location\": \"London or remote (UK)\",\n  \"seniority\": \"senior\",\n  \"must_have\": [\n    \"5+ years backend development\",\n    \"Strong Python (FastAPI/Django)\",\n    \"Deep PostgreSQL experience\",\n    \"PostgreSQL query optimisation\",\n    \"Event-driven architecture\",\n    \"Asynchronous architecture\",\n    \"Automated testing\",\n    \"CI/CD practices\"\n  ],\n  \"nice_to_have\": [\n    \"Fintech/payments domain experience\",\n    \"Terraform\",\n    \"Mentoring engineers\",\n    \"Leadership experience\"\n  ],\n  \"summary\": \"Senior Backend Engineer at Northwind Pay building high‑throughput payment APIs and scaling PostgreSQL infrastructure.\"\n}",
+    "score_fit": "{\n  \"assessments\": [\n    {\n      \"requirement\": \"5+ years backend development\",\n      \"verdict\": \"match\",\n      \"evidence\": \"Backend-leaning full-stack engineer with five years of experience building payment and logistics products\",\n      \"reasoning\": \"The summary states five years of backend experience.\"\n    },\n    {\n      \"requirement\": \"Strong Python (FastAPI/Django)\",\n      \"verdict\": \"match\",\n      \"evidence\": \"Designed and built REST APIs in Python with FastAPI and SQLAlchemy\",\n      \"reasoning\": \"Shows strong Python use with FastAPI.\"\n    },\n    {\n      \"requirement\": \"Deep PostgreSQL experience\",\n      \"verdict\": \"match\",\n      \"evidence\": \"Owned the PostgreSQL data model; partitioned the invoices table and tuned queries\",\n      \"reasoning\": \"Demonstrates deep work with PostgreSQL.\"\n    },\n    {\n      \"requirement\": \"PostgreSQL query optimisation\",\n      \"verdict\": \"match\",\n      \"evidence\": \"Owned the PostgreSQL data model; partitioned the invoices table and tuned queries, cutting p95 API latency from 900ms to 180ms\",\n      \"reasoning\": \"Explicit query optimisation and performance gains.\"\n    },\n    {\n      \"requirement\": \"Event-driven architecture\",\n      \"verdict\": \"match\",\n      \"evidence\": \"Introduced event-driven processing with Redis streams for payment reconciliation\",\n      \"reasoning\": \"Direct mention of event-driven processing.\"\n    },\n    {\n      \"requirement\": \"Asynchronous architecture\",\n      \"verdict\": \"partial\",\n      \"evidence\": \"Introduced event-driven processing with Redis streams for payment reconciliation\",\n      \"reasoning\": \"Related to async but does not explicitly state asynchronous architecture.\"\n    },\n    {\n      \"requirement\": \"Automated testing\",\n      \"verdict\": \"match\",\n      \"evidence\": \"Set up pytest suites, contract tests and GitHub Actions pipelines\",\n      \"reasoning\": \"Shows implementation of automated testing.\"\n    },\n    {\n      \"requirement\": \"CI/CD practices\",\n      \"verdict\": \"match\",\n      \"evidence\": \"Set up pytest suites, contract tests and GitHub Actions pipelines\",\n      \"reasoning\": \"Includes CI/CD pipelines via GitHub Actions.\"\n    },\n    {\n      \"requirement\": \"Fintech/payments domain experience\",\n      \"verdict\": \"match\",\n      \"evidence\": \"Backend-leaning full-stack engineer with five years of experience building payment and logistics products\",\n      \"reasoning\": \"Experience building payment products.\"\n    },\n    {\n      \"requirement\": \"Terraform\",\n      \"verdict\": \"match\",\n      \"evidence\": \"Developed Node.js microservices for parcel tracking, deployed on AWS ECS with Terraform\",\n      \"reasoning\": \"Explicit use of Terraform for deployments.\"\n    },\n    {\n      \"requirement\": \"Mentoring engineers\",\n      \"verdict\": \"match\",\n      \"evidence\": \"Mentored three junior engineers and ran the backend guild's fortnightly design reviews\",\n      \"reasoning\": \"Direct statement of mentoring.\"\n    },\n    {\n      \"requirement\": \"Leadership experience\",\n      \"verdict\": \"match\",\n      \"evidence\": \"Lead engineer on the invoicing platform used by 40,000 small businesses\",\n      \"reasoning\": \"Lead engineer role indicates leadership.\"\n    }\n  ],\n  \"strengths\": [\n    \"Strong Python development with FastAPI\",\n    \"Deep PostgreSQL expertise and query optimisation\",\n    \"Event-driven processing experience\",\n    \"Automated testing and CI/CD pipelines\",\n    \"Mentoring and leadership of engineering teams\"\n  ],\n  \"gaps\": [\n    \"No explicit mention of asynchronous programming constructs\",\n    \"Django experience not referenced\"\n  ]\n}",
+    "draft_cover_letter": "I bring five years of backend‑focused engineering experience building payment and logistics products, directly aligning with Northwind Pay’s need for a senior backend engineer. I have designed and delivered Python REST APIs with FastAPI and SQLAlchemy, owned the PostgreSQL data model, and partitioned the invoices table while tuning queries to cut p95 API latency from 900 ms to 180 ms.\n\nMy work includes introducing event‑driven processing using Redis streams for payment reconciliation, establishing comprehensive pytest suites, contract tests, and GitHub Actions pipelines, and deploying infrastructure with Terraform on AWS ECS. I have also mentored three junior engineers, led fortnightly backend guild design reviews, and served as lead engineer on an invoicing platform serving 40 000 small businesses.\n\nWhile my résumé does not list explicit asynchronous programming constructs or Django experience, I am eager to apply my strong Python background to deepen those areas and contribute immediately to Northwind Pay’s high‑throughput payment APIs. I look forward to discussing how my proven track record in PostgreSQL optimisation, event‑driven architecture, and CI/CD can help scale your payment infrastructure.",
+    "draft_cover_letter:make it shorter": "Five years of backend‑focused engineering have given me deep experience building payment and logistics products. I designed Python REST APIs with FastAPI and SQLAlchemy, owned the PostgreSQL data model, partitioned the invoices table and tuned queries, cutting p95 latency from 900 ms to 180 ms.\n\nI introduced event‑driven processing using Redis streams for payment reconciliation, set up pytest suites, contract tests and GitHub Actions pipelines, and deployed services on AWS ECS with Terraform. In addition, I mentored three junior engineers, ran fortnightly backend‑guild design reviews, and served as lead engineer on an invoicing platform used by 40 000 small businesses.\n\nWhile my résumé does not list explicit asynchronous programming constructs or Django experience, I am eager to apply my strong Python background to deepen those areas and contribute immediately to Northwind Pay’s high‑throughput payment APIs. I look forward to discussing how my proven track record in PostgreSQL optimisation, event‑driven architecture, and CI/CD can help scale your payment infrastructure.",
+    "draft_cover_letter:more confident tone": "With five years of backend‑focused engineering I have built payment and logistics products end‑to‑end. I designed and delivered Python REST APIs using FastAPI and SQLAlchemy, and I own the PostgreSQL data model that powers invoicing for thousands of customers.\n\nBy partitioning the invoices table and tuning queries I cut the p95 API latency from 900 ms to 180 ms, demonstrating deep PostgreSQL expertise and query‑optimisation skill. I also introduced event‑driven processing with Redis streams to reconcile payments, laying the foundation for an asynchronous, high‑throughput architecture.\n\nI established automated testing with pytest suites, contract tests and GitHub Actions pipelines, and I deployed services on AWS ECS using Terraform, ensuring reliable CI/CD delivery. As lead engineer on the invoicing platform used by 40 000 small businesses, I mentored three junior engineers and ran fortnightly backend‑guild design reviews, strengthening the team’s technical standards.\n\nMy résumé does not list explicit asynchronous programming constructs or Django experience, but my proven track record in event‑driven systems and Python development equips me to adopt those technologies rapidly. I am ready to apply my deep PostgreSQL, CI/CD and leadership experience to scale Northwind Pay’s high‑throughput payment APIs.",
+    "draft_cover_letter:less formal": "I’ve spent five years building payment‑focused backend services, designing Python REST APIs with FastAPI and SQLAlchemy and owning the PostgreSQL data model that powers invoicing for thousands of customers.\n\nBy partitioning the invoices table and tuning queries I dropped p95 latency from 900 ms to 180 ms, showing deep PostgreSQL expertise and solid query‑optimisation skills. I also added event‑driven processing with Redis streams to reconcile payments, laying the groundwork for an asynchronous, high‑throughput flow.\n\nTesting and delivery are baked into my work: I set up pytest suites, contract tests and GitHub Actions pipelines, and I deploy services on AWS ECS using Terraform, keeping CI/CD reliable and repeatable. As the lead engineer on an invoicing platform serving 40 000 small businesses, I mentored three junior engineers and ran fortnightly backend‑guild design reviews, helping raise the team’s technical bar.\n\nMy résumé doesn’t call out explicit async programming constructs or Django experience, but my track record with event‑driven systems, Python, and rapid adoption of new tools means I can pick those up quickly. I’m excited to bring my PostgreSQL, CI/CD and leadership background to Northwind Pay and help scale your high‑throughput payment APIs."
+  },
+  "snapshot": {
+    "job": {
+      "title": "Senior Backend Engineer",
+      "company": "Northwind Pay",
+      "location": "London or remote (UK)",
+      "seniority": "senior",
+      "must_have": [
+        "5+ years backend development",
+        "Strong Python (FastAPI/Django)",
+        "Deep PostgreSQL experience",
+        "PostgreSQL query optimisation",
+        "Event-driven architecture",
+        "Asynchronous architecture",
+        "Automated testing",
+        "CI/CD practices"
+      ],
+      "nice_to_have": [
+        "Fintech/payments domain experience",
+        "Terraform",
+        "Mentoring engineers",
+        "Leadership experience"
+      ],
+      "summary": "Senior Backend Engineer at Northwind Pay building high‑throughput payment APIs and scaling PostgreSQL infrastructure."
+    },
+    "fit": {
+      "score": 95,
+      "requirements": [
+        {
+          "requirement": "5+ years backend development",
+          "verdict": "match",
+          "evidence": "Backend-leaning full-stack engineer with five years of experience building payment and logistics products",
+          "reasoning": "The summary states five years of backend experience.",
+          "kind": "must",
+          "evidence_verified": true
+        },
+        {
+          "requirement": "Strong Python (FastAPI/Django)",
+          "verdict": "match",
+          "evidence": "Designed and built REST APIs in Python with FastAPI and SQLAlchemy",
+          "reasoning": "Shows strong Python use with FastAPI.",
+          "kind": "must",
+          "evidence_verified": true
+        },
+        {
+          "requirement": "Deep PostgreSQL experience",
+          "verdict": "match",
+          "evidence": "Owned the PostgreSQL data model; partitioned the invoices table and tuned queries",
+          "reasoning": "Demonstrates deep work with PostgreSQL.",
+          "kind": "must",
+          "evidence_verified": true
+        },
+        {
+          "requirement": "PostgreSQL query optimisation",
+          "verdict": "match",
+          "evidence": "Owned the PostgreSQL data model; partitioned the invoices table and tuned queries, cutting p95 API latency from 900ms to 180ms",
+          "reasoning": "Explicit query optimisation and performance gains.",
+          "kind": "must",
+          "evidence_verified": true
+        },
+        {
+          "requirement": "Event-driven architecture",
+          "verdict": "match",
+          "evidence": "Introduced event-driven processing with Redis streams for payment reconciliation",
+          "reasoning": "Direct mention of event-driven processing.",
+          "kind": "must",
+          "evidence_verified": true
+        },
+        {
+          "requirement": "Asynchronous architecture",
+          "verdict": "partial",
+          "evidence": "Introduced event-driven processing with Redis streams for payment reconciliation",
+          "reasoning": "Related to async but does not explicitly state asynchronous architecture.",
+          "kind": "must",
+          "evidence_verified": true
+        },
+        {
+          "requirement": "Automated testing",
+          "verdict": "match",
+          "evidence": "Set up pytest suites, contract tests and GitHub Actions pipelines",
+          "reasoning": "Shows implementation of automated testing.",
+          "kind": "must",
+          "evidence_verified": true
+        },
+        {
+          "requirement": "CI/CD practices",
+          "verdict": "match",
+          "evidence": "Set up pytest suites, contract tests and GitHub Actions pipelines",
+          "reasoning": "Includes CI/CD pipelines via GitHub Actions.",
+          "kind": "must",
+          "evidence_verified": true
+        },
+        {
+          "requirement": "Fintech/payments domain experience",
+          "verdict": "match",
+          "evidence": "Backend-leaning full-stack engineer with five years of experience building payment and logistics products",
+          "reasoning": "Experience building payment products.",
+          "kind": "nice",
+          "evidence_verified": true
+        },
+        {
+          "requirement": "Terraform",
+          "verdict": "match",
+          "evidence": "Developed Node.js microservices for parcel tracking, deployed on AWS ECS with Terraform",
+          "reasoning": "Explicit use of Terraform for deployments.",
+          "kind": "nice",
+          "evidence_verified": true
+        },
+        {
+          "requirement": "Mentoring engineers",
+          "verdict": "match",
+          "evidence": "Mentored three junior engineers and ran the backend guild's fortnightly design reviews",
+          "reasoning": "Direct statement of mentoring.",
+          "kind": "nice",
+          "evidence_verified": true
+        },
+        {
+          "requirement": "Leadership experience",
+          "verdict": "match",
+          "evidence": "Lead engineer on the invoicing platform used by 40,000 small businesses",
+          "reasoning": "Lead engineer role indicates leadership.",
+          "kind": "nice",
+          "evidence_verified": true
+        }
+      ],
+      "strengths": [
+        "Strong Python development with FastAPI",
+        "Deep PostgreSQL expertise and query optimisation",
+        "Event-driven processing experience",
+        "Automated testing and CI/CD pipelines",
+        "Mentoring and leadership of engineering teams"
+      ],
+      "gaps": [
+        "No explicit mention of asynchronous programming constructs",
+        "Django experience not referenced"
+      ]
+    },
+    "evidence": {
+      "5+ years backend development": [
+        {
+          "chunk_id": "7ab74f81-ad06-4907-b949-80fae2d0c050",
+          "content": "Sam Rivera\nSoftware Engineer · Manchester, UK · sam.rivera@example.com\n\nSummary\nBackend-leaning full-stack engineer with five years of experience building payment and\nlogistics products in Python and TypeScript.\n\nExperience",
+          "similarity": 0.1525
+        },
+        {
+          "chunk_id": "62e516a2-426c-4a13-92ed-ca7c422d50ea",
+          "content": "Experience\n\nSenior Software Engineer, Ledgerly (2022 - present)\nLead engineer on the invoicing platform used by 40,000 small businesses.\nDesigned and built REST APIs in Python with FastAPI and SQLAlchemy, handling 3 million requests a day.\nOwned the PostgreSQL data model; partitioned the invoices table and tuned queries, cutting p95 API latency from 900ms to 180ms.\nIntroduced event-driven processing with Redis streams for payment reconciliation.\nSet up pytest suites, contract tests and GitHub Actions pipelines; deploys went from weekly to daily.\nMentored three junior engineers and ran the backend guild's fortnightly design reviews.",
+          "similarity": 0.0861
+        },
+        {
+          "chunk_id": "2464822c-c67e-46c7-92a8-a3a1433cb363",
+          "content": "Software Engineer, Parcelpoint (2019 - 2022)\nBuilt React and TypeScript dashboards for warehouse operators, used by 600 staff daily.\nDeveloped Node.js microservices for parcel tracking, deployed on AWS ECS with Terraform.\nAdded observability with Prometheus and Grafana, reducing incident detection time by half.\nWorked with product designers to run usability tests and ship accessibility fixes (WCAG AA).\n\nProjects\nOpen-source maintainer of a small Python library for parsing bank statement CSVs (900 GitHub stars).\nBuilt a personal budgeting app with Next.js and Supabase.\n\nEducation\nBSc Computer Science, University of Manchester (2015 - 2019), upper second-class honours.\nFinal-year project: anomaly detection on card transactions using scikit-learn.",
+          "similarity": -0.0811
+        }
+      ],
+      "Strong Python (FastAPI/Django)": [
+        {
+          "chunk_id": "286e7a6a-d78a-4831-b31c-234cbc6bfd42",
+          "content": "Skills\nPython, FastAPI, SQLAlchemy, PostgreSQL, Redis, pytest, TypeScript, React, Node.js, AWS (ECS, S3, RDS),\nTerraform, Docker, GitHub Actions, Prometheus, Grafana",
+          "similarity": 0.2294
+        },
+        {
+          "chunk_id": "62e516a2-426c-4a13-92ed-ca7c422d50ea",
+          "content": "Experience\n\nSenior Software Engineer, Ledgerly (2022 - present)\nLead engineer on the invoicing platform used by 40,000 small businesses.\nDesigned and built REST APIs in Python with FastAPI and SQLAlchemy, handling 3 million requests a day.\nOwned the PostgreSQL data model; partitioned the invoices table and tuned queries, cutting p95 API latency from 900ms to 180ms.\nIntroduced event-driven processing with Redis streams for payment reconciliation.\nSet up pytest suites, contract tests and GitHub Actions pipelines; deploys went from weekly to daily.\nMentored three junior engineers and ran the backend guild's fortnightly design reviews.",
+          "similarity": 0.0861
+        },
+        {
+          "chunk_id": "2464822c-c67e-46c7-92a8-a3a1433cb363",
+          "content": "Software Engineer, Parcelpoint (2019 - 2022)\nBuilt React and TypeScript dashboards for warehouse operators, used by 600 staff daily.\nDeveloped Node.js microservices for parcel tracking, deployed on AWS ECS with Terraform.\nAdded observability with Prometheus and Grafana, reducing incident detection time by half.\nWorked with product designers to run usability tests and ship accessibility fixes (WCAG AA).\n\nProjects\nOpen-source maintainer of a small Python library for parsing bank statement CSVs (900 GitHub stars).\nBuilt a personal budgeting app with Next.js and Supabase.\n\nEducation\nBSc Computer Science, University of Manchester (2015 - 2019), upper second-class honours.\nFinal-year project: anomaly detection on card transactions using scikit-learn.",
+          "similarity": 0.0811
+        }
+      ],
+      "Deep PostgreSQL experience": [
+        {
+          "chunk_id": "7ab74f81-ad06-4907-b949-80fae2d0c050",
+          "content": "Sam Rivera\nSoftware Engineer · Manchester, UK · sam.rivera@example.com\n\nSummary\nBackend-leaning full-stack engineer with five years of experience building payment and\nlogistics products in Python and TypeScript.\n\nExperience",
+          "similarity": 0.1761
+        },
+        {
+          "chunk_id": "286e7a6a-d78a-4831-b31c-234cbc6bfd42",
+          "content": "Skills\nPython, FastAPI, SQLAlchemy, PostgreSQL, Redis, pytest, TypeScript, React, Node.js, AWS (ECS, S3, RDS),\nTerraform, Docker, GitHub Actions, Prometheus, Grafana",
+          "similarity": 0.1325
+        },
+        {
+          "chunk_id": "62e516a2-426c-4a13-92ed-ca7c422d50ea",
+          "content": "Experience\n\nSenior Software Engineer, Ledgerly (2022 - present)\nLead engineer on the invoicing platform used by 40,000 small businesses.\nDesigned and built REST APIs in Python with FastAPI and SQLAlchemy, handling 3 million requests a day.\nOwned the PostgreSQL data model; partitioned the invoices table and tuned queries, cutting p95 API latency from 900ms to 180ms.\nIntroduced event-driven processing with Redis streams for payment reconciliation.\nSet up pytest suites, contract tests and GitHub Actions pipelines; deploys went from weekly to daily.\nMentored three junior engineers and ran the backend guild's fortnightly design reviews.",
+          "similarity": 0.0994
+        }
+      ],
+      "PostgreSQL query optimisation": [
+        {
+          "chunk_id": "286e7a6a-d78a-4831-b31c-234cbc6bfd42",
+          "content": "Skills\nPython, FastAPI, SQLAlchemy, PostgreSQL, Redis, pytest, TypeScript, React, Node.js, AWS (ECS, S3, RDS),\nTerraform, Docker, GitHub Actions, Prometheus, Grafana",
+          "similarity": 0.1325
+        },
+        {
+          "chunk_id": "62e516a2-426c-4a13-92ed-ca7c422d50ea",
+          "content": "Experience\n\nSenior Software Engineer, Ledgerly (2022 - present)\nLead engineer on the invoicing platform used by 40,000 small businesses.\nDesigned and built REST APIs in Python with FastAPI and SQLAlchemy, handling 3 million requests a day.\nOwned the PostgreSQL data model; partitioned the invoices table and tuned queries, cutting p95 API latency from 900ms to 180ms.\nIntroduced event-driven processing with Redis streams for payment reconciliation.\nSet up pytest suites, contract tests and GitHub Actions pipelines; deploys went from weekly to daily.\nMentored three junior engineers and ran the backend guild's fortnightly design reviews.",
+          "similarity": 0.0994
+        },
+        {
+          "chunk_id": "7ab74f81-ad06-4907-b949-80fae2d0c050",
+          "content": "Sam Rivera\nSoftware Engineer · Manchester, UK · sam.rivera@example.com\n\nSummary\nBackend-leaning full-stack engineer with five years of experience building payment and\nlogistics products in Python and TypeScript.\n\nExperience",
+          "similarity": 0.0
+        }
+      ],
+      "Event-driven architecture": [
+        {
+          "chunk_id": "62e516a2-426c-4a13-92ed-ca7c422d50ea",
+          "content": "Experience\n\nSenior Software Engineer, Ledgerly (2022 - present)\nLead engineer on the invoicing platform used by 40,000 small businesses.\nDesigned and built REST APIs in Python with FastAPI and SQLAlchemy, handling 3 million requests a day.\nOwned the PostgreSQL data model; partitioned the invoices table and tuned queries, cutting p95 API latency from 900ms to 180ms.\nIntroduced event-driven processing with Redis streams for payment reconciliation.\nSet up pytest suites, contract tests and GitHub Actions pipelines; deploys went from weekly to daily.\nMentored three junior engineers and ran the backend guild's fortnightly design reviews.",
+          "similarity": 0.0994
+        },
+        {
+          "chunk_id": "7ab74f81-ad06-4907-b949-80fae2d0c050",
+          "content": "Sam Rivera\nSoftware Engineer · Manchester, UK · sam.rivera@example.com\n\nSummary\nBackend-leaning full-stack engineer with five years of experience building payment and\nlogistics products in Python and TypeScript.\n\nExperience",
+          "similarity": 0.0
+        },
+        {
+          "chunk_id": "2464822c-c67e-46c7-92a8-a3a1433cb363",
+          "content": "Software Engineer, Parcelpoint (2019 - 2022)\nBuilt React and TypeScript dashboards for warehouse operators, used by 600 staff daily.\nDeveloped Node.js microservices for parcel tracking, deployed on AWS ECS with Terraform.\nAdded observability with Prometheus and Grafana, reducing incident detection time by half.\nWorked with product designers to run usability tests and ship accessibility fixes (WCAG AA).\n\nProjects\nOpen-source maintainer of a small Python library for parsing bank statement CSVs (900 GitHub stars).\nBuilt a personal budgeting app with Next.js and Supabase.\n\nEducation\nBSc Computer Science, University of Manchester (2015 - 2019), upper second-class honours.\nFinal-year project: anomaly detection on card transactions using scikit-learn.",
+          "similarity": 0.0
+        }
+      ],
+      "Asynchronous architecture": [
+        {
+          "chunk_id": "7ab74f81-ad06-4907-b949-80fae2d0c050",
+          "content": "Sam Rivera\nSoftware Engineer · Manchester, UK · sam.rivera@example.com\n\nSummary\nBackend-leaning full-stack engineer with five years of experience building payment and\nlogistics products in Python and TypeScript.\n\nExperience",
+          "similarity": 0.0
+        },
+        {
+          "chunk_id": "62e516a2-426c-4a13-92ed-ca7c422d50ea",
+          "content": "Experience\n\nSenior Software Engineer, Ledgerly (2022 - present)\nLead engineer on the invoicing platform used by 40,000 small businesses.\nDesigned and built REST APIs in Python with FastAPI and SQLAlchemy, handling 3 million requests a day.\nOwned the PostgreSQL data model; partitioned the invoices table and tuned queries, cutting p95 API latency from 900ms to 180ms.\nIntroduced event-driven processing with Redis streams for payment reconciliation.\nSet up pytest suites, contract tests and GitHub Actions pipelines; deploys went from weekly to daily.\nMentored three junior engineers and ran the backend guild's fortnightly design reviews.",
+          "similarity": 0.0
+        },
+        {
+          "chunk_id": "2464822c-c67e-46c7-92a8-a3a1433cb363",
+          "content": "Software Engineer, Parcelpoint (2019 - 2022)\nBuilt React and TypeScript dashboards for warehouse operators, used by 600 staff daily.\nDeveloped Node.js microservices for parcel tracking, deployed on AWS ECS with Terraform.\nAdded observability with Prometheus and Grafana, reducing incident detection time by half.\nWorked with product designers to run usability tests and ship accessibility fixes (WCAG AA).\n\nProjects\nOpen-source maintainer of a small Python library for parsing bank statement CSVs (900 GitHub stars).\nBuilt a personal budgeting app with Next.js and Supabase.\n\nEducation\nBSc Computer Science, University of Manchester (2015 - 2019), upper second-class honours.\nFinal-year project: anomaly detection on card transactions using scikit-learn.",
+          "similarity": 0.0
+        }
+      ],
+      "Automated testing": [
+        {
+          "chunk_id": "7ab74f81-ad06-4907-b949-80fae2d0c050",
+          "content": "Sam Rivera\nSoftware Engineer · Manchester, UK · sam.rivera@example.com\n\nSummary\nBackend-leaning full-stack engineer with five years of experience building payment and\nlogistics products in Python and TypeScript.\n\nExperience",
+          "similarity": 0.0
+        },
+        {
+          "chunk_id": "62e516a2-426c-4a13-92ed-ca7c422d50ea",
+          "content": "Experience\n\nSenior Software Engineer, Ledgerly (2022 - present)\nLead engineer on the invoicing platform used by 40,000 small businesses.\nDesigned and built REST APIs in Python with FastAPI and SQLAlchemy, handling 3 million requests a day.\nOwned the PostgreSQL data model; partitioned the invoices table and tuned queries, cutting p95 API latency from 900ms to 180ms.\nIntroduced event-driven processing with Redis streams for payment reconciliation.\nSet up pytest suites, contract tests and GitHub Actions pipelines; deploys went from weekly to daily.\nMentored three junior engineers and ran the backend guild's fortnightly design reviews.",
+          "similarity": 0.0
+        },
+        {
+          "chunk_id": "2464822c-c67e-46c7-92a8-a3a1433cb363",
+          "content": "Software Engineer, Parcelpoint (2019 - 2022)\nBuilt React and TypeScript dashboards for warehouse operators, used by 600 staff daily.\nDeveloped Node.js microservices for parcel tracking, deployed on AWS ECS with Terraform.\nAdded observability with Prometheus and Grafana, reducing incident detection time by half.\nWorked with product designers to run usability tests and ship accessibility fixes (WCAG AA).\n\nProjects\nOpen-source maintainer of a small Python library for parsing bank statement CSVs (900 GitHub stars).\nBuilt a personal budgeting app with Next.js and Supabase.\n\nEducation\nBSc Computer Science, University of Manchester (2015 - 2019), upper second-class honours.\nFinal-year project: anomaly detection on card transactions using scikit-learn.",
+          "similarity": 0.0
+        }
+      ],
+      "CI/CD practices": [
+        {
+          "chunk_id": "7ab74f81-ad06-4907-b949-80fae2d0c050",
+          "content": "Sam Rivera\nSoftware Engineer · Manchester, UK · sam.rivera@example.com\n\nSummary\nBackend-leaning full-stack engineer with five years of experience building payment and\nlogistics products in Python and TypeScript.\n\nExperience",
+          "similarity": 0.0
+        },
+        {
+          "chunk_id": "62e516a2-426c-4a13-92ed-ca7c422d50ea",
+          "content": "Experience\n\nSenior Software Engineer, Ledgerly (2022 - present)\nLead engineer on the invoicing platform used by 40,000 small businesses.\nDesigned and built REST APIs in Python with FastAPI and SQLAlchemy, handling 3 million requests a day.\nOwned the PostgreSQL data model; partitioned the invoices table and tuned queries, cutting p95 API latency from 900ms to 180ms.\nIntroduced event-driven processing with Redis streams for payment reconciliation.\nSet up pytest suites, contract tests and GitHub Actions pipelines; deploys went from weekly to daily.\nMentored three junior engineers and ran the backend guild's fortnightly design reviews.",
+          "similarity": 0.0
+        },
+        {
+          "chunk_id": "2464822c-c67e-46c7-92a8-a3a1433cb363",
+          "content": "Software Engineer, Parcelpoint (2019 - 2022)\nBuilt React and TypeScript dashboards for warehouse operators, used by 600 staff daily.\nDeveloped Node.js microservices for parcel tracking, deployed on AWS ECS with Terraform.\nAdded observability with Prometheus and Grafana, reducing incident detection time by half.\nWorked with product designers to run usability tests and ship accessibility fixes (WCAG AA).\n\nProjects\nOpen-source maintainer of a small Python library for parsing bank statement CSVs (900 GitHub stars).\nBuilt a personal budgeting app with Next.js and Supabase.\n\nEducation\nBSc Computer Science, University of Manchester (2015 - 2019), upper second-class honours.\nFinal-year project: anomaly detection on card transactions using scikit-learn.",
+          "similarity": 0.0
+        }
+      ],
+      "Fintech/payments domain experience": [
+        {
+          "chunk_id": "7ab74f81-ad06-4907-b949-80fae2d0c050",
+          "content": "Sam Rivera\nSoftware Engineer · Manchester, UK · sam.rivera@example.com\n\nSummary\nBackend-leaning full-stack engineer with five years of experience building payment and\nlogistics products in Python and TypeScript.\n\nExperience",
+          "similarity": 0.1525
+        },
+        {
+          "chunk_id": "62e516a2-426c-4a13-92ed-ca7c422d50ea",
+          "content": "Experience\n\nSenior Software Engineer, Ledgerly (2022 - present)\nLead engineer on the invoicing platform used by 40,000 small businesses.\nDesigned and built REST APIs in Python with FastAPI and SQLAlchemy, handling 3 million requests a day.\nOwned the PostgreSQL data model; partitioned the invoices table and tuned queries, cutting p95 API latency from 900ms to 180ms.\nIntroduced event-driven processing with Redis streams for payment reconciliation.\nSet up pytest suites, contract tests and GitHub Actions pipelines; deploys went from weekly to daily.\nMentored three junior engineers and ran the backend guild's fortnightly design reviews.",
+          "similarity": 0.043
+        },
+        {
+          "chunk_id": "2464822c-c67e-46c7-92a8-a3a1433cb363",
+          "content": "Software Engineer, Parcelpoint (2019 - 2022)\nBuilt React and TypeScript dashboards for warehouse operators, used by 600 staff daily.\nDeveloped Node.js microservices for parcel tracking, deployed on AWS ECS with Terraform.\nAdded observability with Prometheus and Grafana, reducing incident detection time by half.\nWorked with product designers to run usability tests and ship accessibility fixes (WCAG AA).\n\nProjects\nOpen-source maintainer of a small Python library for parsing bank statement CSVs (900 GitHub stars).\nBuilt a personal budgeting app with Next.js and Supabase.\n\nEducation\nBSc Computer Science, University of Manchester (2015 - 2019), upper second-class honours.\nFinal-year project: anomaly detection on card transactions using scikit-learn.",
+          "similarity": 0.0
+        }
+      ],
+      "Terraform": [
+        {
+          "chunk_id": "286e7a6a-d78a-4831-b31c-234cbc6bfd42",
+          "content": "Skills\nPython, FastAPI, SQLAlchemy, PostgreSQL, Redis, pytest, TypeScript, React, Node.js, AWS (ECS, S3, RDS),\nTerraform, Docker, GitHub Actions, Prometheus, Grafana",
+          "similarity": 0.2294
+        },
+        {
+          "chunk_id": "2464822c-c67e-46c7-92a8-a3a1433cb363",
+          "content": "Software Engineer, Parcelpoint (2019 - 2022)\nBuilt React and TypeScript dashboards for warehouse operators, used by 600 staff daily.\nDeveloped Node.js microservices for parcel tracking, deployed on AWS ECS with Terraform.\nAdded observability with Prometheus and Grafana, reducing incident detection time by half.\nWorked with product designers to run usability tests and ship accessibility fixes (WCAG AA).\n\nProjects\nOpen-source maintainer of a small Python library for parsing bank statement CSVs (900 GitHub stars).\nBuilt a personal budgeting app with Next.js and Supabase.\n\nEducation\nBSc Computer Science, University of Manchester (2015 - 2019), upper second-class honours.\nFinal-year project: anomaly detection on card transactions using scikit-learn.",
+          "similarity": 0.0811
+        },
+        {
+          "chunk_id": "7ab74f81-ad06-4907-b949-80fae2d0c050",
+          "content": "Sam Rivera\nSoftware Engineer · Manchester, UK · sam.rivera@example.com\n\nSummary\nBackend-leaning full-stack engineer with five years of experience building payment and\nlogistics products in Python and TypeScript.\n\nExperience",
+          "similarity": 0.0
+        }
+      ],
+      "Mentoring engineers": [
+        {
+          "chunk_id": "62e516a2-426c-4a13-92ed-ca7c422d50ea",
+          "content": "Experience\n\nSenior Software Engineer, Ledgerly (2022 - present)\nLead engineer on the invoicing platform used by 40,000 small businesses.\nDesigned and built REST APIs in Python with FastAPI and SQLAlchemy, handling 3 million requests a day.\nOwned the PostgreSQL data model; partitioned the invoices table and tuned queries, cutting p95 API latency from 900ms to 180ms.\nIntroduced event-driven processing with Redis streams for payment reconciliation.\nSet up pytest suites, contract tests and GitHub Actions pipelines; deploys went from weekly to daily.\nMentored three junior engineers and ran the backend guild's fortnightly design reviews.",
+          "similarity": 0.0609
+        },
+        {
+          "chunk_id": "7ab74f81-ad06-4907-b949-80fae2d0c050",
+          "content": "Sam Rivera\nSoftware Engineer · Manchester, UK · sam.rivera@example.com\n\nSummary\nBackend-leaning full-stack engineer with five years of experience building payment and\nlogistics products in Python and TypeScript.\n\nExperience",
+          "similarity": 0.0
+        },
+        {
+          "chunk_id": "2464822c-c67e-46c7-92a8-a3a1433cb363",
+          "content": "Software Engineer, Parcelpoint (2019 - 2022)\nBuilt React and TypeScript dashboards for warehouse operators, used by 600 staff daily.\nDeveloped Node.js microservices for parcel tracking, deployed on AWS ECS with Terraform.\nAdded observability with Prometheus and Grafana, reducing incident detection time by half.\nWorked with product designers to run usability tests and ship accessibility fixes (WCAG AA).\n\nProjects\nOpen-source maintainer of a small Python library for parsing bank statement CSVs (900 GitHub stars).\nBuilt a personal budgeting app with Next.js and Supabase.\n\nEducation\nBSc Computer Science, University of Manchester (2015 - 2019), upper second-class honours.\nFinal-year project: anomaly detection on card transactions using scikit-learn.",
+          "similarity": 0.0
+        }
+      ],
+      "Leadership experience": [
+        {
+          "chunk_id": "7ab74f81-ad06-4907-b949-80fae2d0c050",
+          "content": "Sam Rivera\nSoftware Engineer · Manchester, UK · sam.rivera@example.com\n\nSummary\nBackend-leaning full-stack engineer with five years of experience building payment and\nlogistics products in Python and TypeScript.\n\nExperience",
+          "similarity": 0.2157
+        },
+        {
+          "chunk_id": "62e516a2-426c-4a13-92ed-ca7c422d50ea",
+          "content": "Experience\n\nSenior Software Engineer, Ledgerly (2022 - present)\nLead engineer on the invoicing platform used by 40,000 small businesses.\nDesigned and built REST APIs in Python with FastAPI and SQLAlchemy, handling 3 million requests a day.\nOwned the PostgreSQL data model; partitioned the invoices table and tuned queries, cutting p95 API latency from 900ms to 180ms.\nIntroduced event-driven processing with Redis streams for payment reconciliation.\nSet up pytest suites, contract tests and GitHub Actions pipelines; deploys went from weekly to daily.\nMentored three junior engineers and ran the backend guild's fortnightly design reviews.",
+          "similarity": 0.0609
+        },
+        {
+          "chunk_id": "2464822c-c67e-46c7-92a8-a3a1433cb363",
+          "content": "Software Engineer, Parcelpoint (2019 - 2022)\nBuilt React and TypeScript dashboards for warehouse operators, used by 600 staff daily.\nDeveloped Node.js microservices for parcel tracking, deployed on AWS ECS with Terraform.\nAdded observability with Prometheus and Grafana, reducing incident detection time by half.\nWorked with product designers to run usability tests and ship accessibility fixes (WCAG AA).\n\nProjects\nOpen-source maintainer of a small Python library for parsing bank statement CSVs (900 GitHub stars).\nBuilt a personal budgeting app with Next.js and Supabase.\n\nEducation\nBSc Computer Science, University of Manchester (2015 - 2019), upper second-class honours.\nFinal-year project: anomaly detection on card transactions using scikit-learn.",
+          "similarity": 0.0
+        }
+      ]
+    },
+    "cover_letter": "I bring five years of backend‑focused engineering experience building payment and logistics products, directly aligning with Northwind Pay’s need for a senior backend engineer. I have designed and delivered Python REST APIs with FastAPI and SQLAlchemy, owned the PostgreSQL data model, and partitioned the invoices table while tuning queries to cut p95 API latency from 900 ms to 180 ms.\n\nMy work includes introducing event‑driven processing using Redis streams for payment reconciliation, establishing comprehensive pytest suites, contract tests, and GitHub Actions pipelines, and deploying infrastructure with Terraform on AWS ECS. I have also mentored three junior engineers, led fortnightly backend guild design reviews, and served as lead engineer on an invoicing platform serving 40 000 small businesses.\n\nWhile my résumé does not list explicit asynchronous programming constructs or Django experience, I am eager to apply my strong Python background to deepen those areas and contribute immediately to Northwind Pay’s high‑throughput payment APIs. I look forward to discussing how my proven track record in PostgreSQL optimisation, event‑driven architecture, and CI/CD can help scale your payment infrastructure."
+  }
+}
