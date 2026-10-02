@@ -26,6 +26,7 @@ from alembic import command  # noqa: E402
 from app.agent.runtime import close_graph  # noqa: E402
 from app.auth.turnstile import get_turnstile_verifier  # noqa: E402
 from app.db import Base, engine  # noqa: E402
+from app.limits.ratelimit import limiter  # noqa: E402
 from app.main import app  # noqa: E402
 
 
@@ -72,6 +73,14 @@ def fake_turnstile():
     app.dependency_overrides[get_turnstile_verifier] = lambda: verify
     yield
     app.dependency_overrides.pop(get_turnstile_verifier, None)
+
+
+@pytest.fixture(autouse=True)
+def _reset_rate_limits():
+    # Tests share one client IP; without this, signups across tests trip the auth limit.
+    limiter.reset()
+    yield
+    limiter.reset()
 
 
 @pytest.fixture

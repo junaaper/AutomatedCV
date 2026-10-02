@@ -3,5 +3,6 @@
 from app.applications.models import AgentRun, Application
 from app.auth.models import RefreshToken, User
 from app.cv.models import CvChunk, CvDocument
+from app.limits.models import LlmUsage
 
-__all__ = ["AgentRun", "Application", "CvChunk", "CvDocument", "RefreshToken", "User"]
+__all__ = ["AgentRun", "Application", "CvChunk", "CvDocument", "LlmUsage", "RefreshToken", "User"]

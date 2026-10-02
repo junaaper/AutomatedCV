@@ -13,6 +13,7 @@ from app.cv.models import CvDocument
 from app.cv.service import chunk_count, ingest_cv, search_cv
 from app.db import SessionDep
 from app.demo.service import embedder_for
+from app.limits.ratelimit import rate_limit
 from app.providers.embeddings import Embedder, get_embedder
 
 log = logging.getLogger(__name__)
@@ -47,7 +48,9 @@ def _embedding_unavailable(exc: Exception) -> HTTPException:
     )
 
 
-@router.post("", status_code=status.HTTP_201_CREATED)
+@router.post(
+    "", status_code=status.HTTP_201_CREATED, dependencies=[rate_limit("cv-upload", 5, by="user")]
+)
 async def upload_cv(
     user: CurrentUser,
     session: SessionDep,
@@ -106,7 +109,7 @@ async def delete_cv(user: CurrentUser, session: SessionDep) -> None:
     await session.commit()
 
 
-@router.post("/search")
+@router.post("/search", dependencies=[rate_limit("cv-search", 30, by="user")])
 async def search(
     body: SearchRequest, user: CurrentUser, session: SessionDep, embedder: EmbedderDep
 ) -> list[EvidenceOut]:

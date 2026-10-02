@@ -21,6 +21,7 @@ from app.auth.turnstile import TurnstileVerifier, get_turnstile_verifier
 from app.config import get_settings
 from app.db import SessionDep
 from app.demo.service import create_demo_user, purge_expired_demo_users
+from app.limits.ratelimit import rate_limit
 
 log = logging.getLogger(__name__)
 router = APIRouter(prefix="/auth", tags=["auth"])
@@ -71,7 +72,7 @@ async def _login_response(session: SessionDep, response: Response, user: User) -
     )
 
 
-@router.post("/signup", status_code=status.HTTP_201_CREATED)
+@router.post("/signup", status_code=status.HTTP_201_CREATED, dependencies=[rate_limit("auth", 10)])
 async def signup(
     body: SignupRequest,
     request: Request,
@@ -90,7 +91,7 @@ async def signup(
     return await _login_response(session, response, user)
 
 
-@router.post("/demo", status_code=status.HTTP_201_CREATED)
+@router.post("/demo", status_code=status.HTTP_201_CREATED, dependencies=[rate_limit("demo", 5)])
 async def demo_login(
     body: DemoRequest,
     request: Request,
@@ -109,7 +110,7 @@ async def demo_login(
     return await _login_response(session, response, user)
 
 
-@router.post("/login")
+@router.post("/login", dependencies=[rate_limit("auth", 10)])
 async def login(
     body: LoginRequest,
     request: Request,
@@ -124,7 +125,7 @@ async def login(
     return await _login_response(session, response, user)
 
 
-@router.post("/refresh", response_model=TokenResponse)
+@router.post("/refresh", response_model=TokenResponse, dependencies=[rate_limit("refresh", 30)])
 async def refresh(
     response: Response,
     session: SessionDep,

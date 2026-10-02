@@ -15,6 +15,7 @@ from app.cv.router import router as cv_router
 from app.db import SessionDep, SessionLocal
 from app.demo.router import router as demo_router
 from app.demo.service import purge_expired_demo_users
+from app.limits.router import router as limits_router
 
 log = logging.getLogger(__name__)
 
@@ -49,6 +50,7 @@ def create_app() -> FastAPI:
     app.include_router(agent_router)
     app.include_router(applications_router)
     app.include_router(demo_router)
+    app.include_router(limits_router)
 
     @app.get("/healthz")
     async def healthz() -> dict[str, str]:

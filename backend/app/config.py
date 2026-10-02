@@ -30,6 +30,8 @@ class Settings(BaseSettings):
 
     turnstile_secret_key: str = "1x0000000000000000000000000000000AA"
     daily_llm_runs_per_user: int = 20
+    demo_daily_llm_runs: int = 3  # live runs only; replayed sample postings are free
+    global_daily_llm_runs: int = 500  # protects the shared free-tier API key
 
     sentry_dsn: str = ""
 

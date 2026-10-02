@@ -15,7 +15,7 @@ from app.auth.models import User
 from app.cv.models import EMBED_DIM
 from app.cv.service import ingest_cv
 from app.demo.content import DEMO_CV, SAMPLE_POSTINGS, normalise_posting
-from app.demo.replay import ReplayChatModel
+from app.demo.replay import ReplayChatModel, feedback_key
 from app.providers.embeddings import Embedder, HashingEmbedder
 
 log = logging.getLogger(__name__)
@@ -60,6 +60,15 @@ def demo_embedder() -> Embedder:
 
 def embedder_for(user: User, default: Embedder) -> Embedder:
     return demo_embedder() if user.is_demo else default
+
+
+def is_replayed(user: User, posting: str, feedback: str | None = None) -> bool:
+    """True if this demo step is fully covered by recordings (so it costs no live LLM call)."""
+    if not user.is_demo or (fixture := fixture_for_posting(posting)) is None:
+        return False
+    return (
+        feedback is None or f"draft_cover_letter:{feedback_key(feedback)}" in fixture["responses"]
+    )
 
 
 def llm_for(user: User, posting: str, live: BaseChatModel) -> BaseChatModel:

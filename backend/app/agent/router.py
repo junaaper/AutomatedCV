@@ -30,7 +30,9 @@ from app.auth.models import User
 from app.config import get_settings
 from app.cv.models import CvChunk
 from app.db import SessionDep, SessionLocal
-from app.demo.service import embedder_for, llm_for
+from app.demo.service import embedder_for, is_replayed, llm_for
+from app.limits.quota import consume_llm_run
+from app.limits.ratelimit import rate_limit
 from app.providers.embeddings import Embedder, get_embedder
 from app.providers.llm import get_llm
 
@@ -244,7 +246,9 @@ EmbedderDep = Annotated[Embedder, Depends(get_embedder)]
 # --- endpoints ---
 
 
-@router.post("", response_class=StreamingResponse)
+@router.post(
+    "", response_class=StreamingResponse, dependencies=[rate_limit("run-start", 6, by="user")]
+)
 async def start_run(
     body: StartRun, user: CurrentUser, session: SessionDep, llm: LLMDep, embedder: EmbedderDep
 ) -> StreamingResponse:
@@ -252,6 +256,8 @@ async def start_run(
     has_cv = await session.scalar(select(CvChunk.id).where(CvChunk.user_id == user.id).limit(1))
     if not has_cv:
         raise HTTPException(status.HTTP_409_CONFLICT, "Upload your CV before analysing a job.")
+    if not is_replayed(user, body.posting):
+        await consume_llm_run(session, user)
     run = AgentRun(user_id=user.id)
     session.add(run)
     await session.commit()
@@ -260,7 +266,11 @@ async def start_run(
     return _stream({**graph_input, "revisions": 0}, run.id, ctx)
 
 
-@router.post("/{run_id}/resume", response_class=StreamingResponse)
+@router.post(
+    "/{run_id}/resume",
+    response_class=StreamingResponse,
+    dependencies=[rate_limit("run-step", 20, by="user")],
+)
 async def resume_run(
     run_id: uuid.UUID,
     body: ResumeRun,
@@ -273,14 +283,22 @@ async def resume_run(
     feedback), or reject."""
     await _owned_run(session, run_id, user.id)
     values = (await (await get_graph()).aget_state(_config(run_id))).values
-    if body.action == "revise" and values.get("revisions", 0) >= get_settings().max_revisions:
-        raise HTTPException(status.HTTP_409_CONFLICT, "Revision limit reached")
+    posting = values.get("posting", "")
+    if body.action == "revise":
+        if values.get("revisions", 0) >= get_settings().max_revisions:
+            raise HTTPException(status.HTTP_409_CONFLICT, "Revision limit reached")
+        if not is_replayed(user, posting, body.feedback):
+            await consume_llm_run(session, user)  # only revise calls the model
     await _claim(session, run_id, user.id, [RunStatus.awaiting_review])
-    ctx = _context(user, values.get("posting", ""), llm, embedder)
+    ctx = _context(user, posting, llm, embedder)
     return _stream(Command(resume=body.model_dump(exclude_none=True)), run_id, ctx)
 
 
-@router.post("/{run_id}/retry", response_class=StreamingResponse)
+@router.post(
+    "/{run_id}/retry",
+    response_class=StreamingResponse,
+    dependencies=[rate_limit("run-step", 20, by="user")],
+)
 async def retry_run(
     run_id: uuid.UUID, user: CurrentUser, session: SessionDep, llm: LLMDep, embedder: EmbedderDep
 ) -> StreamingResponse:
@@ -289,9 +307,11 @@ async def retry_run(
     run = await _owned_run(session, run_id, user.id)
     if not _is_retryable(run):
         raise HTTPException(status.HTTP_409_CONFLICT, "Run is not retryable")
+    posting = (await (await get_graph()).aget_state(_config(run_id))).values.get("posting", "")
+    if not is_replayed(user, posting):
+        await consume_llm_run(session, user)
     await _claim(session, run_id, user.id, [RunStatus.failed, RunStatus.running])
-    values = (await (await get_graph()).aget_state(_config(run_id))).values
-    return _stream(None, run_id, _context(user, values.get("posting", ""), llm, embedder))
+    return _stream(None, run_id, _context(user, posting, llm, embedder))
 
 
 @router.get("")
