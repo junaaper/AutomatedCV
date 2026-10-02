@@ -19,7 +19,7 @@ class Settings(BaseSettings):
     refresh_token_days: int = 14
 
     llm_provider: Literal["groq", "gemini", "openrouter", "fake"] = "groq"
-    llm_model: str = "llama-3.3-70b-versatile"
+    llm_model: str = "openai/gpt-oss-120b"
     embed_provider: Literal["gemini", "fake"] = "gemini"
     embed_model: str = "gemini-embedding-001"
     # Read here (not by each SDK from os.environ) so values from .env are honoured too.
