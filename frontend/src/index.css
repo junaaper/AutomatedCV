@@ -1,0 +1,155 @@
+@import 'tailwindcss';
+
+@theme {
+  --font-sans: 'Inter', ui-sans-serif, system-ui, sans-serif;
+  --font-display: 'Instrument Serif', ui-serif, Georgia, serif;
+  --font-mono: 'JetBrains Mono', ui-monospace, monospace;
+
+  --color-ink-950: #07070c;
+  --color-ink-900: #0b0b13;
+  --color-ink-850: #10101a;
+  --color-ink-800: #161622;
+  --color-ink-700: #22222f;
+
+  --color-match: #34d399;
+  --color-partial: #fbbf24;
+  --color-missing: #fb7185;
+
+  --animate-aurora-1: aurora-1 22s ease-in-out infinite alternate;
+  --animate-aurora-2: aurora-2 28s ease-in-out infinite alternate;
+  --animate-aurora-3: aurora-3 34s ease-in-out infinite alternate;
+  --animate-shimmer: shimmer 2.2s linear infinite;
+
+  @keyframes aurora-1 {
+    0% { transform: translate(-10%, -10%) scale(1); }
+    100% { transform: translate(15%, 10%) scale(1.25); }
+  }
+  @keyframes aurora-2 {
+    0% { transform: translate(10%, 5%) scale(1.1); }
+    100% { transform: translate(-15%, -10%) scale(0.9); }
+  }
+  @keyframes aurora-3 {
+    0% { transform: translate(0, 10%) scale(0.9); }
+    100% { transform: translate(10%, -15%) scale(1.2); }
+  }
+  @keyframes shimmer {
+    0% { background-position: -200% 0; }
+    100% { background-position: 200% 0; }
+  }
+}
+
+:root {
+  color-scheme: dark;
+}
+
+/* Background on html only: a body background would paint over the fixed
+   negative-z aurora layer. */
+html {
+  background: var(--color-ink-950);
+}
+
+body {
+  color: #e7e7f0;
+  font-family: var(--font-sans);
+  -webkit-font-smoothing: antialiased;
+  text-rendering: optimizeLegibility;
+}
+
+::selection {
+  background: rgb(139 92 246 / 0.35);
+}
+
+/* Subtle, thin scrollbars that match the dark surfaces. */
+* {
+  scrollbar-width: thin;
+  scrollbar-color: rgb(255 255 255 / 0.12) transparent;
+}
+
+@layer components {
+  /* Frosted glass panel with a soft inner highlight. */
+  .glass {
+    background: linear-gradient(180deg, rgb(255 255 255 / 0.055), rgb(255 255 255 / 0.02));
+    border: 1px solid rgb(255 255 255 / 0.08);
+    box-shadow:
+      inset 0 1px 0 0 rgb(255 255 255 / 0.06),
+      0 20px 60px -30px rgb(0 0 0 / 0.8);
+    backdrop-filter: blur(18px) saturate(140%);
+  }
+
+  /* 1px gradient border via a masked pseudo-element (keeps the panel background). */
+  .ring-gradient {
+    position: relative;
+  }
+  .ring-gradient::before {
+    content: '';
+    position: absolute;
+    inset: 0;
+    padding: 1px;
+    border-radius: inherit;
+    background: linear-gradient(135deg, rgb(167 139 250 / 0.7), rgb(34 211 238 / 0.35), transparent 60%);
+    mask:
+      linear-gradient(#000 0 0) content-box,
+      linear-gradient(#000 0 0);
+    mask-composite: exclude;
+    pointer-events: none;
+  }
+
+  .text-gradient {
+    background: linear-gradient(100deg, #c4b5fd 0%, #a78bfa 30%, #67e8f9 70%, #a5f3fc 100%);
+    -webkit-background-clip: text;
+    background-clip: text;
+    color: transparent;
+  }
+
+  .shimmer-text {
+    background: linear-gradient(90deg, rgb(255 255 255 / 0.45) 0%, #fff 50%, rgb(255 255 255 / 0.45) 100%);
+    background-size: 200% 100%;
+    -webkit-background-clip: text;
+    background-clip: text;
+    color: transparent;
+    animation: var(--animate-shimmer);
+  }
+
+  .grid-backdrop {
+    background-image:
+      linear-gradient(rgb(255 255 255 / 0.035) 1px, transparent 1px),
+      linear-gradient(90deg, rgb(255 255 255 / 0.035) 1px, transparent 1px);
+    background-size: 56px 56px;
+    mask-image: radial-gradient(ellipse 70% 60% at 50% 0%, #000 30%, transparent 75%);
+  }
+
+  .noise {
+    background-image: url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' width='160' height='160'%3E%3Cfilter id='n'%3E%3CfeTurbulence type='fractalNoise' baseFrequency='.85' numOctaves='3' stitchTiles='stitch'/%3E%3C/filter%3E%3Crect width='100%25' height='100%25' filter='url(%23n)' opacity='.5'/%3E%3C/svg%3E");
+    opacity: 0.045;
+    mix-blend-mode: overlay;
+  }
+
+  .field {
+    width: 100%;
+    border-radius: 0.875rem;
+    border: 1px solid rgb(255 255 255 / 0.09);
+    background: rgb(0 0 0 / 0.25);
+    padding: 0.75rem 1rem;
+    color: #f4f4fa;
+    outline: none;
+    transition: border-color 150ms, box-shadow 150ms, background 150ms;
+  }
+  .field::placeholder {
+    color: rgb(255 255 255 / 0.3);
+  }
+  .field:focus {
+    border-color: rgb(167 139 250 / 0.6);
+    box-shadow: 0 0 0 4px rgb(139 92 246 / 0.15);
+    background: rgb(0 0 0 / 0.35);
+  }
+}
+
+@media (prefers-reduced-motion: reduce) {
+  *,
+  *::before,
+  *::after {
+    animation-duration: 0.01ms !important;
+    animation-iteration-count: 1 !important;
+    transition-duration: 0.01ms !important;
+  }
+}
