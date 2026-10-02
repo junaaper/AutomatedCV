@@ -22,6 +22,7 @@ from httpx import ASGITransport, AsyncClient  # noqa: E402
 from sqlalchemy import text  # noqa: E402
 
 from alembic import command  # noqa: E402
+from app.auth.turnstile import get_turnstile_verifier  # noqa: E402
 from app.db import Base, engine  # noqa: E402
 from app.main import app  # noqa: E402
 
@@ -48,6 +49,21 @@ async def db(migrated_db):
     if tables:
         async with engine.begin() as conn:
             await conn.execute(text(f"TRUNCATE {tables} RESTART IDENTITY CASCADE"))
+
+
+CAPTCHA_FAIL_TOKEN = "fail"
+
+
+@pytest.fixture(autouse=True)
+def fake_turnstile():
+    """Never call Cloudflare from tests; the token "fail" simulates a failed challenge."""
+
+    async def verify(token: str, remote_ip: str | None) -> bool:
+        return token != CAPTCHA_FAIL_TOKEN
+
+    app.dependency_overrides[get_turnstile_verifier] = lambda: verify
+    yield
+    app.dependency_overrides.pop(get_turnstile_verifier, None)
 
 
 @pytest.fixture
