@@ -1,7 +1,7 @@
 from functools import lru_cache
 from typing import Literal
 
-from pydantic import model_validator
+from pydantic import SecretStr, model_validator
 from pydantic_settings import BaseSettings, SettingsConfigDict
 
 _DEV_JWT_SECRET = "dev-only-secret-change-me-in-production-0123456789"
@@ -22,6 +22,11 @@ class Settings(BaseSettings):
     llm_model: str = "llama-3.3-70b-versatile"
     embed_provider: Literal["gemini", "fake"] = "gemini"
     embed_model: str = "gemini-embedding-001"
+    # Read here (not by each SDK from os.environ) so values from .env are honoured too.
+    groq_api_key: SecretStr | None = None
+    google_api_key: SecretStr | None = None
+    openrouter_api_key: SecretStr | None = None
+    max_revisions: int = 3
 
     turnstile_secret_key: str = "1x0000000000000000000000000000000AA"
     daily_llm_runs_per_user: int = 20

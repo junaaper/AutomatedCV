@@ -9,6 +9,8 @@ import re
 from functools import lru_cache
 from typing import Protocol
 
+from pydantic import SecretStr
+
 from app.config import get_settings
 from app.cv.models import EMBED_DIM
 
@@ -20,10 +22,12 @@ class Embedder(Protocol):
 
 
 class GeminiEmbedder:
-    def __init__(self, model: str, dim: int) -> None:
+    def __init__(self, model: str, dim: int, api_key: SecretStr | None) -> None:
         from langchain_google_genai import GoogleGenerativeAIEmbeddings
 
-        self._client = GoogleGenerativeAIEmbeddings(model=model, output_dimensionality=dim)
+        self._client = GoogleGenerativeAIEmbeddings(
+            model=model, output_dimensionality=dim, google_api_key=api_key
+        )
 
     async def embed_documents(self, texts: list[str]) -> list[list[float]]:
         return await self._client.aembed_documents(texts, task_type="RETRIEVAL_DOCUMENT")
@@ -66,5 +70,5 @@ class HashingEmbedder:
 def get_embedder() -> Embedder:
     settings = get_settings()
     if settings.embed_provider == "gemini":
-        return GeminiEmbedder(settings.embed_model, EMBED_DIM)
+        return GeminiEmbedder(settings.embed_model, EMBED_DIM, settings.google_api_key)
     return HashingEmbedder(EMBED_DIM)
