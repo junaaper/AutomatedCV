@@ -57,7 +57,8 @@ async def retrieve_evidence(state: AgentState, runtime: Runtime[AgentContext]) -
 
 
 def _normalise(text: str) -> str:
-    return " ".join(re.sub(r"[^\w+#%.]+", " ", text.lower()).split())
+    text = re.sub(r"(?<!\w)\.|\.(?!\w)", " ", text.lower())  # keep dots only inside "node.js"
+    return " ".join(re.sub(r"[^\w+#%.]+", " ", text).split())
 
 
 def quote_is_grounded(quote: str, excerpts: list[str]) -> bool:
