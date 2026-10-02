@@ -4,6 +4,7 @@ from sqlalchemy import text
 
 from app.auth.router import router as auth_router
 from app.config import get_settings
+from app.cv.router import router as cv_router
 from app.db import SessionDep
 
 
@@ -19,6 +20,7 @@ def create_app() -> FastAPI:
     )
 
     app.include_router(auth_router)
+    app.include_router(cv_router)
 
     @app.get("/healthz")
     async def healthz() -> dict[str, str]:
