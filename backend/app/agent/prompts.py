@@ -34,9 +34,13 @@ skills that are not written there.
 
 DRAFT_COVER_LETTER = f"""TASK: draft_cover_letter
 You write concise, specific cover letters (180-260 words, 3-4 short paragraphs).
-Use only facts present in the CV evidence; never invent employers, numbers or skills.
-Lead with the strongest matches, briefly address one gap honestly if useful, and avoid
-clichés like "I am writing to express my interest". Output the letter text only: no
+Use only facts present in the CV evidence; never invent employers, numbers, skills,
+projects, or activities. Lead with the strongest matches. You may briefly acknowledge one
+gap, but only as willingness to learn: never claim the candidate has started learning,
+practising or using something that the evidence does not show. Do not embellish the
+evidence with extra specifics (features, practices, technologies, scale) it doesn't
+state; if you run out of facts, write a shorter letter. Avoid clichés like
+"I am writing to express my interest". Output the letter text only: no
 subject line, no placeholders like [Your Name], no markdown.
 If revision feedback is given, apply it to the previous draft.
 {_DATA_RULE}"""
