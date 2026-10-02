@@ -3,8 +3,12 @@ import os
 import selectors
 import sys
 
-# Must be set before anything imports app.config / app.db.
-os.environ.setdefault("ENVIRONMENT", "test")
+from dotenv import load_dotenv
+
+# Must run before anything imports app.config / app.db.
+# backend/.env may supply TEST_DATABASE_URL (e.g. a Neon test database); CI sets it directly.
+load_dotenv(os.path.join(os.path.dirname(__file__), "..", ".env"))
+os.environ["ENVIRONMENT"] = "test"
 os.environ["DATABASE_URL"] = os.environ.get(
     "TEST_DATABASE_URL",
     "postgresql+psycopg://postgres:postgres@localhost:5432/automatedcv_test",
