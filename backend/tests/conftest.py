@@ -22,6 +22,7 @@ from httpx import ASGITransport, AsyncClient  # noqa: E402
 from sqlalchemy import text  # noqa: E402
 
 from alembic import command  # noqa: E402
+from app.agent.runtime import close_graph  # noqa: E402
 from app.auth.turnstile import get_turnstile_verifier  # noqa: E402
 from app.db import Base, engine  # noqa: E402
 from app.main import app  # noqa: E402
@@ -39,6 +40,12 @@ def migrated_db():
     cfg = Config(os.path.join(os.path.dirname(__file__), "..", "alembic.ini"))
     command.upgrade(cfg, "head")
     yield
+
+
+@pytest.fixture(scope="session", autouse=True)
+async def _close_agent_pool():
+    yield
+    await close_graph()
 
 
 @pytest.fixture
