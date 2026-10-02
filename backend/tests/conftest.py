@@ -70,3 +70,17 @@ def fake_turnstile():
 async def client():
     async with AsyncClient(transport=ASGITransport(app=app), base_url="http://test") as c:
         yield c
+
+
+async def signup_headers(client: AsyncClient, email: str) -> dict[str, str]:
+    resp = await client.post(
+        "/auth/signup",
+        json={"email": email, "password": "correct horse battery", "turnstile_token": "ok"},
+    )
+    assert resp.status_code == 201, resp.text
+    return {"Authorization": f"Bearer {resp.json()['access_token']}"}
+
+
+@pytest.fixture
+async def auth_headers(client, db) -> dict[str, str]:
+    return await signup_headers(client, "user@example.com")
