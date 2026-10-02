@@ -13,8 +13,9 @@ os.environ["DATABASE_URL"] = os.environ.get(
     "TEST_DATABASE_URL",
     "postgresql+psycopg://postgres:postgres@localhost:5432/automatedcv_test",
 )
-os.environ.setdefault("LLM_PROVIDER", "fake")
-os.environ.setdefault("EMBED_PROVIDER", "fake")
+# Always offline in tests, even when .env configures real providers for dev.
+os.environ["LLM_PROVIDER"] = "fake"
+os.environ["EMBED_PROVIDER"] = "fake"
 
 import pytest  # noqa: E402
 from alembic.config import Config  # noqa: E402
