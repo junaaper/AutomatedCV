@@ -11,7 +11,9 @@ OPENROUTER_BASE_URL = "https://openrouter.ai/api/v1"
 
 
 def build_chat_model(settings: Settings) -> BaseChatModel:
-    common = {"temperature": 0.2, "max_retries": 2, "timeout": 60}
+    # Generous retries: free tiers enforce tokens-per-minute limits (Groq: 8k TPM), and the
+    # SDKs back off and honour Retry-After, so a burst usually succeeds a few seconds later.
+    common = {"temperature": 0.2, "max_retries": 5, "timeout": 60}
     match settings.llm_provider:
         case "groq":
             from langchain_groq import ChatGroq

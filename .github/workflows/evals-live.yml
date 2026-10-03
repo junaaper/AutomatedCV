@@ -1,0 +1,66 @@
+name: Live evals
+
+# Runs the eval suite against the real LLM and embeddings once a week, to catch model
+# drift or free-tier changes. Needs repo secrets GROQ_API_KEY and GOOGLE_API_KEY
+# (Settings → Secrets and variables → Actions); skips cleanly if they're missing.
+on:
+  schedule:
+    - cron: "0 7 * * 1"
+  workflow_dispatch:
+
+jobs:
+  live:
+    runs-on: ubuntu-latest
+    defaults:
+      run:
+        working-directory: backend
+    services:
+      postgres:
+        image: pgvector/pgvector:pg16
+        env:
+          POSTGRES_USER: postgres
+          POSTGRES_PASSWORD: postgres
+          POSTGRES_DB: automatedcv
+        ports:
+          - 5432:5432
+        options: >-
+          --health-cmd "pg_isready -U postgres"
+          --health-interval 2s
+          --health-timeout 3s
+          --health-retries 20
+    env:
+      DATABASE_URL: postgresql+psycopg://postgres:postgres@localhost:5432/automatedcv
+      LLM_PROVIDER: ${{ vars.LLM_PROVIDER || 'groq' }}
+      LLM_MODEL: ${{ vars.LLM_MODEL || 'openai/gpt-oss-120b' }}
+      EMBED_PROVIDER: gemini
+      GROQ_API_KEY: ${{ secrets.GROQ_API_KEY }}
+      GOOGLE_API_KEY: ${{ secrets.GOOGLE_API_KEY }}
+      OPENROUTER_API_KEY: ${{ secrets.OPENROUTER_API_KEY }}
+    steps:
+      - name: Check secrets
+        id: secrets
+        run: |
+          if [ -z "$GROQ_API_KEY$OPENROUTER_API_KEY" ] || [ -z "$GOOGLE_API_KEY" ]; then
+            echo "skip=true" >> "$GITHUB_OUTPUT"
+            echo "Live evals skipped: add GROQ_API_KEY (or OPENROUTER_API_KEY) and GOOGLE_API_KEY secrets." >> "$GITHUB_STEP_SUMMARY"
+          fi
+      - uses: actions/checkout@v7
+        if: steps.secrets.outputs.skip != 'true'
+      - uses: astral-sh/setup-uv@v10.2.0
+        if: steps.secrets.outputs.skip != 'true'
+        with:
+          enable-cache: true
+      - name: Run live evals
+        if: steps.secrets.outputs.skip != 'true'
+        run: |
+          uv sync --locked
+          uv run alembic upgrade head
+          uv run python evals/run_evals.py --mode live --sleep 4 --report eval-report.md
+      - name: Publish report
+        if: always() && steps.secrets.outputs.skip != 'true'
+        run: cat eval-report.md >> "$GITHUB_STEP_SUMMARY" || true
+      - uses: actions/upload-artifact@v7
+        if: always() && steps.secrets.outputs.skip != 'true'
+        with:
+          name: live-eval-report
+          path: backend/eval-report.md
