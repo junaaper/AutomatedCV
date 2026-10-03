@@ -2,7 +2,7 @@ import uuid
 from datetime import datetime
 
 from pgvector.sqlalchemy import Vector
-from sqlalchemy import DateTime, ForeignKey, Index, Integer, String, Text, Uuid, func
+from sqlalchemy import DateTime, ForeignKey, Integer, String, Text, Uuid, func
 from sqlalchemy.orm import Mapped, mapped_column
 
 from app.db import Base
@@ -26,15 +26,14 @@ class CvDocument(Base):
 
 
 class CvChunk(Base):
+    """One embedded passage of a CV.
+
+    No vector index on purpose: every search is scoped to one user's few dozen chunks, so
+    exact KNN through the user_id index beats an approximate global index, which would
+    filter by user only after collecting candidates (see cv.service.search_cv).
+    """
+
     __tablename__ = "cv_chunks"
-    __table_args__ = (
-        Index(
-            "ix_cv_chunks_embedding_hnsw",
-            "embedding",
-            postgresql_using="hnsw",
-            postgresql_ops={"embedding": "vector_cosine_ops"},
-        ),
-    )
 
     id: Mapped[uuid.UUID] = mapped_column(Uuid, primary_key=True, default=uuid.uuid4)
     document_id: Mapped[uuid.UUID] = mapped_column(

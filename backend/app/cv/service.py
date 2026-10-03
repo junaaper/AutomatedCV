@@ -61,14 +61,23 @@ async def search_cv(
     if not queries:
         return []
     vectors = await embedder.embed_queries(queries)
+    # Exact search over this user's chunks only. Every query is scoped to one CV (tens of
+    # chunks), so exact KNN via the user_id index is both correct and fast. An approximate
+    # HNSW scan would filter by user *after* collecting global candidates, and other users'
+    # similar chunks could crowd out all of this user's results
+    # (tests/test_retrieval_isolation.py). The MATERIALIZED CTE stops the planner from
+    # answering the ORDER BY with a vector index.
+    mine = (
+        select(CvChunk.id, CvChunk.content, CvChunk.embedding)
+        .where(CvChunk.user_id == user_id)
+        .cte("mine")
+        .prefix_with("MATERIALIZED")
+    )
     results = []
     for vec in vectors:
-        distance = CvChunk.embedding.cosine_distance(vec).label("distance")
+        distance = mine.c.embedding.cosine_distance(vec).label("distance")
         rows = await session.execute(
-            select(CvChunk.id, CvChunk.content, distance)
-            .where(CvChunk.user_id == user_id)
-            .order_by(distance)
-            .limit(k)
+            select(mine.c.id, mine.c.content, distance).order_by(distance).limit(k)
         )
         results.append([Evidence(r.id, r.content, round(1 - r.distance, 4)) for r in rows])
     return results
