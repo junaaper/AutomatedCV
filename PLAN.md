@@ -5,6 +5,23 @@ Greenfield portfolio project (dir currently holds only an empty `dummy.html`). A
 
 Decisions: Gemini embeddings (768-dim, swappable), CV input = PDF + pasted text, frontend on Cloudflare Pages, commits authored by user only (no Claude trailers/attribution).
 
+## Status (2026-10-03)
+All ten phases are implemented and green in CI (backend, evals, Docker smoke, frontend, e2e).
+Changes from the original plan, made during the build:
+- **Retrieval is exact per user (no HNSW index).** A filtered HNSW scan could return zero
+  rows for a user when other users' chunks crowded the candidate list; per-user exact KNN is
+  correct and fast at CV scale.
+- **Same-origin API via a Cloudflare Pages Function proxy**, so the refresh cookie is
+  first-party (third-party-cookie blocking would otherwise log users out on reload).
+- **Rate limiting is a small in-memory sliding window** rather than slowapi (single
+  instance; swap for Redis if scaled out).
+- **The default model is `openai/gpt-oss-120b` on Groq** (Groq retired `llama-3.3-70b-versatile`).
+- **Evals live in `backend/evals`** and replay recorded responses in CI; live runs weekly.
+
+Remaining manual steps (need the owner's accounts): follow `docs/DEPLOY.md` (Neon prod,
+Render blueprint, Cloudflare Pages + Turnstile, optional Sentry/LangSmith, GitHub secrets
+for live evals), add the live URL to the README, and record the walkthrough video.
+
 ## Repo layout
 ```
 backend/   FastAPI app (uv, pyproject + uv.lock, Dockerfile, alembic/)
