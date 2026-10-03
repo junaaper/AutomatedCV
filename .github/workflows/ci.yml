@@ -52,6 +52,84 @@ jobs:
           uv run alembic upgrade head
           uv run alembic check
 
+  evals:
+    # Replays recorded model responses through the real graph, parsing, grounding and
+    # scoring code, so quality can't silently regress. No network, no API keys.
+    runs-on: ubuntu-latest
+    defaults:
+      run:
+        working-directory: backend
+    services:
+      postgres:
+        image: pgvector/pgvector:pg16
+        env:
+          POSTGRES_USER: postgres
+          POSTGRES_PASSWORD: postgres
+          POSTGRES_DB: automatedcv
+        ports:
+          - 5432:5432
+        options: >-
+          --health-cmd "pg_isready -U postgres"
+          --health-interval 2s
+          --health-timeout 3s
+          --health-retries 20
+    env:
+      DATABASE_URL: postgresql+psycopg://postgres:postgres@localhost:5432/automatedcv
+      LLM_PROVIDER: fake
+      EMBED_PROVIDER: fake
+    steps:
+      - uses: actions/checkout@v7
+      - uses: astral-sh/setup-uv@v10.2.0
+        with:
+          enable-cache: true
+      - run: uv sync --locked
+      - run: uv run alembic upgrade head
+      - name: Eval suite (replay)
+        run: uv run python evals/run_evals.py --mode replay --report eval-report.md
+      - name: Publish report
+        if: always()
+        run: cat eval-report.md >> "$GITHUB_STEP_SUMMARY" || true
+
+  docker:
+    # Builds the production image and boots it against Postgres: proves the entrypoint
+    # runs migrations and the server answers health checks, exactly as on Render.
+    runs-on: ubuntu-latest
+    services:
+      postgres:
+        image: pgvector/pgvector:pg16
+        env:
+          POSTGRES_USER: postgres
+          POSTGRES_PASSWORD: postgres
+          POSTGRES_DB: automatedcv
+        ports:
+          - 5432:5432
+        options: >-
+          --health-cmd "pg_isready -U postgres"
+          --health-interval 2s
+          --health-timeout 3s
+          --health-retries 20
+    steps:
+      - uses: actions/checkout@v7
+      - name: Build image
+        run: docker build -t automatedcv-api backend
+      - name: Boot and health-check
+        run: |
+          docker run -d --name api --network host \
+            -e ENVIRONMENT=prod \
+            -e JWT_SECRET=ci-only-secret-that-is-at-least-32-bytes-long \
+            -e DATABASE_URL=postgresql://postgres:postgres@localhost:5432/automatedcv \
+            -e LLM_PROVIDER=fake -e EMBED_PROVIDER=fake \
+            -e PORT=8000 automatedcv-api
+          for i in $(seq 1 30); do
+            if curl -fsS http://localhost:8000/healthz; then break; fi
+            sleep 2
+          done
+          curl -fsS http://localhost:8000/readyz
+          curl -fsS http://localhost:8000/demo/postings > /dev/null
+      - name: Container logs
+        if: always()
+        run: docker logs api || true
+
   frontend:
     runs-on: ubuntu-latest
     defaults:

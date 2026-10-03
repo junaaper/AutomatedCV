@@ -1,0 +1,41 @@
+# Render Blueprint: New → Blueprint → pick this repo. Values marked `sync: false` are
+# entered in the Render dashboard (never committed). See docs/DEPLOY.md.
+services:
+  - type: web
+    name: automatedcv-api
+    runtime: docker
+    plan: free
+    region: ohio # same AWS region as the Neon database (us-east-2)
+    rootDir: backend
+    dockerfilePath: ./Dockerfile
+    healthCheckPath: /healthz
+    autoDeploy: true
+    envVars:
+      - key: ENVIRONMENT
+        value: prod
+      - key: DATABASE_URL # Neon connection string (pooled), postgresql://... is fine
+        sync: false
+      - key: JWT_SECRET
+        generateValue: true
+      - key: FRONTEND_ORIGIN # e.g. https://automatedcv.pages.dev
+        sync: false
+      - key: COOKIE_PATH_PREFIX # the frontend proxies /api/* to this service
+        value: /api
+      - key: LLM_PROVIDER
+        value: groq
+      - key: LLM_MODEL
+        value: openai/gpt-oss-120b
+      - key: GROQ_API_KEY
+        sync: false
+      - key: EMBED_PROVIDER
+        value: gemini
+      - key: GOOGLE_API_KEY
+        sync: false
+      - key: TURNSTILE_SECRET_KEY
+        sync: false
+      - key: SENTRY_DSN
+        sync: false
+      - key: LANGSMITH_TRACING
+        value: "false"
+      - key: LANGSMITH_API_KEY
+        sync: false
