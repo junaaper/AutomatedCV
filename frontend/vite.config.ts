@@ -13,7 +13,8 @@ export default defineConfig({
           groups: [
             { name: 'react', test: /node_modules[\\/](react|react-dom|react-router|scheduler)[\\/]/ },
             { name: 'motion', test: /node_modules[\\/](motion|framer-motion|motion-dom|motion-utils)[\\/]/ },
-            { name: 'vendor', test: /node_modules[\\/]/ },
+            // Sentry stays out so it remains a lazy chunk (only loaded when a DSN is set).
+            { name: 'vendor', test: /node_modules[\\/](?!@sentry)/ },
           ],
         },
       },

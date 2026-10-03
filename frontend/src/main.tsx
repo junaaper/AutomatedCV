@@ -9,6 +9,14 @@ import { ApiError } from './lib/api'
 import { AuthProvider } from './lib/auth'
 import './index.css'
 
+// Error monitoring is opt-in: the SDK is only downloaded when a DSN is configured.
+const sentryDsn = import.meta.env.VITE_SENTRY_DSN
+if (sentryDsn) {
+  import('@sentry/react').then((Sentry) =>
+    Sentry.init({ dsn: sentryDsn, environment: import.meta.env.MODE, tracesSampleRate: 0.1 }),
+  )
+}
+
 const queryClient = new QueryClient({
   defaultOptions: {
     queries: {
