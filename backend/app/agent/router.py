@@ -170,9 +170,13 @@ async def _drive(
     """Runs the graph to its next pause or end, emitting events, then records status."""
     graph = await get_graph()
     try:
-        async for chunk in graph.astream(
-            graph_input, _config(run_id), context=ctx, stream_mode="updates"
-        ):
+        # run_name/metadata label the trace in LangSmith (when tracing is enabled).
+        config = {
+            **_config(run_id),
+            "run_name": "job-application-agent",
+            "metadata": {"run_id": str(run_id)},
+        }
+        async for chunk in graph.astream(graph_input, config, context=ctx, stream_mode="updates"):
             for node, update_ in chunk.items():
                 if node == "__interrupt__":
                     continue  # reported once, below, from the saved state

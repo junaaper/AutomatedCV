@@ -27,8 +27,12 @@ log = logging.getLogger(__name__)
 router = APIRouter(prefix="/auth", tags=["auth"])
 
 REFRESH_COOKIE = "refresh_token"
-# Scoped to /auth so the cookie isn't sent with every API call.
-REFRESH_COOKIE_PATH = "/auth"
+
+
+def _cookie_path() -> str:
+    # Scoped to the auth routes so the cookie isn't sent with every API call.
+    return f"{get_settings().cookie_path_prefix}/auth"
+
 
 Verifier = Annotated[TurnstileVerifier, Depends(get_turnstile_verifier)]
 
@@ -39,7 +43,7 @@ def _set_refresh_cookie(response: Response, token: str) -> None:
         REFRESH_COOKIE,
         token,
         max_age=settings.refresh_token_days * 24 * 3600,
-        path=REFRESH_COOKIE_PATH,
+        path=_cookie_path(),
         httponly=True,
         secure=settings.cookie_secure,
         samesite=settings.cookie_samesite,
@@ -50,7 +54,7 @@ def _clear_refresh_cookie(response: Response) -> None:
     settings = get_settings()
     response.delete_cookie(
         REFRESH_COOKIE,
-        path=REFRESH_COOKIE_PATH,
+        path=_cookie_path(),
         httponly=True,
         secure=settings.cookie_secure,
         samesite=settings.cookie_samesite,

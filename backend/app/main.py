@@ -16,6 +16,7 @@ from app.db import SessionDep, SessionLocal
 from app.demo.router import router as demo_router
 from app.demo.service import purge_expired_demo_users
 from app.limits.router import router as limits_router
+from app.observability import init_observability
 
 log = logging.getLogger(__name__)
 
@@ -36,10 +37,11 @@ async def lifespan(app: FastAPI) -> AsyncIterator[None]:
 
 def create_app() -> FastAPI:
     settings = get_settings()
+    init_observability(settings)
     app = FastAPI(title="AutomatedCV API", version="0.1.0", lifespan=lifespan)
     app.add_middleware(
         CORSMiddleware,
-        allow_origins=[settings.frontend_origin],
+        allow_origins=settings.cors_origins,
         allow_credentials=True,
         allow_methods=["*"],
         allow_headers=["*"],
