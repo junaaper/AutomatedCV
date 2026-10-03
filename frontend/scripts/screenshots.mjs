@@ -35,11 +35,23 @@ BSc Computer Science, University of Leeds (2016–2020), first class honours.
 Skills
 Python, FastAPI, PostgreSQL, SQLAlchemy, pytest, Docker, React, TypeScript, GitHub Actions`
 
+// FORMAT=jpeg keeps README images small (the film-grain backdrop compresses badly as PNG).
+const FORMAT = process.env.FORMAT ?? 'png'
 const shot = (page, name, opts = {}) =>
-  page.screenshot({ path: `${OUT}/${name}.png`, ...opts }).then(() => console.log('saved', name))
+  page
+    .screenshot({
+      path: `${OUT}/${name}.${FORMAT === 'jpeg' ? 'jpg' : 'png'}`,
+      type: FORMAT,
+      ...(FORMAT === 'jpeg' ? { quality: 82 } : {}),
+      ...opts,
+    })
+    .then(() => console.log('saved', name))
 
 const browser = await chromium.launch()
-const ctx = await browser.newContext({ viewport: { width: 1440, height: 900 }, deviceScaleFactor: 2 })
+const ctx = await browser.newContext({
+  viewport: { width: 1440, height: 900 },
+  deviceScaleFactor: Number(process.env.SCALE ?? 2),
+})
 const page = await ctx.newPage()
 page.on('pageerror', (e) => console.error('PAGE ERROR:', e.message))
 page.on('console', (m) => m.type() === 'error' && console.error('CONSOLE:', m.text()))

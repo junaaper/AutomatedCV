@@ -85,10 +85,12 @@ export function AppShell() {
           <div className="glass rounded-2xl p-3">
             <div className="flex items-center gap-3">
               <div className="grid size-9 shrink-0 place-items-center rounded-full bg-gradient-to-br from-violet-500 to-cyan-400 text-sm font-semibold text-white">
-                {user?.email[0]?.toUpperCase()}
+                {user?.is_demo ? 'S' : user?.email[0]?.toUpperCase()}
               </div>
               <div className="min-w-0 flex-1">
-                <p className="truncate text-sm font-medium text-white">{user?.email}</p>
+                <p className="truncate text-sm font-medium text-white">
+                  {user?.is_demo ? 'Sam Rivera' : user?.email}
+                </p>
                 <p className="text-xs text-white/40">{user?.is_demo ? 'Demo account' : 'Signed in'}</p>
               </div>
               <button

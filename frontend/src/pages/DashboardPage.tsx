@@ -85,11 +85,12 @@ export function DashboardPage() {
   const avg = apps.length ? apps.reduce((s, a) => s + a.fit_score, 0) / apps.length : 0
   const active = apps.filter((a) => a.status === 'interviewing' || a.status === 'offer').length
   const pending = runs.filter((r) => r.status === 'awaiting_review')
-  // "ada.lovelace42@x.com" -> "Ada"
-  const name = (user?.email.split('@')[0].split(/[._+\-\d]/).find(Boolean) ?? 'there').replace(
-    /^./,
-    (c) => c.toUpperCase(),
-  )
+  // "ada.lovelace42@x.com" -> "Ada"; demo accounts are the sample persona.
+  const name = user?.is_demo
+    ? 'Sam'
+    : (user?.email.split('@')[0].split(/[._+\-\d]/).find(Boolean) ?? 'there').replace(/^./, (c) =>
+        c.toUpperCase(),
+      )
 
   const steps = [
     { done: !!cv, title: 'Add your CV', desc: 'PDF or pasted text, indexed for search', to: '/cv', icon: FileText },
